@@ -1,65 +1,66 @@
-import Image from "next/image";
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="space-y-10">
+      <section className="rounded-2xl border bg-white p-8">
+        <h1 className="text-3xl font-bold tracking-tight">Home</h1>
+
+        <div className="mt-8 space-y-6">
+          <div>
+            <h2 className="text-xl font-semibold">What We Do</h2>
+            <p className="mt-2 text-slate-700">
+              Vandy Accounting Solutions helps companies create an organized and informational approach to accounting and finance.
+              Julie L. Riess, owner of Vandy Accounting Solutions, is at the helm, using industry-proven methods to help you develop
+              a fiscal strategy for your business and ensure all your financial needs are met.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-semibold">What We Offer</h2>
+            <p className="mt-2 text-slate-700">At Vandy Accounting Solutions, we deliver outstanding results by offering:</p>
+            <ul className="mt-3 list-disc pl-6 text-slate-700">
+              <li>Remote accounting &amp; bookkeeping services</li>
+              <li>Convenient real-time access to your Quickbooks file</li>
+              <li>ADP payroll partnership</li>
+              <li>Closing and year-end financial record coordination</li>
+              <li>Budget preparation</li>
+            </ul>
+          </div>
+
+          <hr className="my-6" />
+
+          <div>
+            <h2 className="text-xl font-semibold">What Others Say</h2>
+            <blockquote className="mt-3 rounded-xl border bg-slate-50 p-5 text-slate-800">
+              <p>
+                “Julie’s academic accomplishments and dual background in public accounting and non-profit service is an ideal blend for anyone
+                seeking someone that will ensure maintenance of required recordkeeping but have an above average eye toward improvement and
+                strategic planning. She was outstanding at explaining accounting concepts and requirements and earned a great deal of respect
+                from all. Vendors adored her quick response time and thoroughness. I am confident Julie will fulfill your financial services needs
+                and excel as your financial expert.”
+              </p>
+              <p className="mt-4 font-semibold">
+                – Robert A. Woods, CPA, CGMA, Former member of the Board of Directors of the Indiana Society of Certified Public Accountants
+              </p>
+            </blockquote>
+
+            <p className="mt-6 text-slate-700">
+              Vandy Accounting Solutions is a proud Gold-certified Intuit QuickBooks ProAdvisor.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-semibold">How to Reach Us</h2>
+            <p className="mt-2 text-slate-700">
+              Vandy Accounting Solutions would love the opportunity to work with you. Reach out to us with an email or a call!
+            </p>
+            <p className="mt-3 text-slate-700">
+              E: info@vandyaccounting.com <br />
+              P: (317)490-6113 <br />
+              7755 Shasta Drive, Indianapolis, IN 46217
+            </p>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
     </div>
   );
 }

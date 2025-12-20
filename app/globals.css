@@ -1,26 +1,34 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+:root{
+  /* Vandy Accounting brand colors */
+  --brand: 138 47% 33%;              /* #2E7D32 green */
+  --brand-foreground: 0 0% 100%;     /* white */
+
+  --brand-secondary: 207 79% 20%;    /* #0B3C5D blue */
+
+  --text: 222 47% 11%;
+  --muted: 215 16% 47%;
+  --bg: 210 40% 98%;
+  --card: 0 0% 100%;
+  --border: 214 32% 91%;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+h1, h2, h3 {
+  color: hsl(var(--brand-secondary));
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body{
+  color: hsl(var(--text));
+  background: hsl(var(--bg));
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.container{
+  max-width: 72rem; /* ~ max-w-6xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
