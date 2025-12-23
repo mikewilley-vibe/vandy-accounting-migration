@@ -1,16 +1,12 @@
-import Link from "next/link";
+import SocialLinks from "@/components/SocialLinks";
 
 export default function SiteFooter() {
   return (
-    <footer className="border-t">
-      <div className="container py-10 text-sm" style={{ color: "hsl(var(--muted))" }}>
-        <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-          <div>© {new Date().getFullYear()} Vandy Accounting Solutions</div>
-          <div className="flex gap-4">
-            <Link href="/about" className="hover:opacity-80">About</Link>
-            <Link href="/services" className="hover:opacity-80">Services</Link>
-            <Link href="/contact" className="hover:opacity-80">Contact</Link>
-          </div>
+    <footer className="mt-6 border-t border-slate-200/70">
+      <div className="mx-auto max-w-6xl px-6 py-10">
+        <div className="text-sm font-semibold text-slate-900">Connect</div>
+        <div className="mt-3">
+          <SocialLinks size="md" />
         </div>
       </div>
     </footer>

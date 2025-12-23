@@ -1,65 +1,185 @@
+// app/contact/page.tsx
+import type { Metadata } from "next";
+import Link from "next/link";
+import Section from "@/components/Section";
+import PrimaryButton from "@/components/PrimaryButton";
+import SocialLinks from "@/components/SocialLinks";
+import { company } from "@/data/company";
+
+export const metadata: Metadata = {
+  title: "Contact | Vandy Accounting Solutions",
+  description:
+    "Contact Vandy Accounting Solutions to request a quote or ask a question.",
+};
+
 export default function ContactPage() {
   return (
-    <section className="rounded-2xl border bg-white p-8">
-      <h1 className="text-3xl font-bold tracking-tight">Contact</h1>
+    <div className="space-y-10">
+      <Section className="bg-white">
+        {/* PAGE HEADER (polished + aligned) */}
+        <div className="px-7 pt-7 md:px-10 md:pt-10">
+          <div className="space-y-3">
+            <div className="text-sm font-semibold text-slate-600">Contact</div>
 
-      <div className="mt-8 grid gap-8 md:grid-cols-2">
-        <div className="text-slate-700">
-          <h2 className="text-xl font-semibold text-slate-900">Get in touch</h2>
+            <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">
+              Get in touch
+            </h1>
 
-          <p className="mt-3">
-            Vandy Accounting Solutions, LLC <br />
-            7755 Shasta Drive, Indianapolis, IN 46217
-          </p>
-
-          <p className="mt-3">
-            P: (317) 490-6113 <br />
-            E: info@vandyaccounting.com
-          </p>
-
-          <p className="mt-5">
-            Connect with us on Facebook &amp; LinkedIn!
-          </p>
-
-          {/* TODO: swap these links with the exact URLs you want to promote */}
-          <div className="mt-3 flex gap-3">
-            <a className="underline underline-offset-4 hover:opacity-80" href="#" rel="noreferrer">
-              Facebook
-            </a>
-            <a className="underline underline-offset-4 hover:opacity-80" href="#" rel="noreferrer">
-              LinkedIn
-            </a>
+            <p className="text-lg text-slate-600 max-w-2xl">
+              Reach out directly or send a message. We typically respond within
+              one business day.
+            </p>
           </div>
         </div>
 
-        {/* Placeholder form (wire to whatever you’ll use later: Formspree/Resend/etc.) */}
-        <form className="rounded-2xl border bg-slate-50 p-6">
-          <div className="text-sm font-semibold text-slate-900">Send a message</div>
+        {/* SOFT DIVIDER */}
+        <div className="px-7 md:px-10">
+          <div className="mt-8 h-px w-full bg-slate-200/60" />
+        </div>
 
-          <label className="mt-4 block text-sm text-slate-700">
-            Name
-            <input className="mt-1 w-full rounded-xl border px-3 py-2" name="name" />
-          </label>
+        {/* CONTENT */}
+        <div className="px-7 pb-10 pt-8 md:px-10 md:pb-12 md:pt-10">
+          <div className="grid gap-10 md:grid-cols-2 md:items-start">
+            {/* LEFT (quieter, more scannable) */}
+            <aside className="space-y-6">
+              <div className="rounded-2xl bg-slate-50/60 p-6 ring-1 ring-slate-200/70">
+                <div className="text-sm font-semibold text-slate-900">
+                  {company.name}
+                </div>
 
-          <label className="mt-4 block text-sm text-slate-700">
-            Email
-            <input className="mt-1 w-full rounded-xl border px-3 py-2" name="email" type="email" />
-          </label>
+                <div className="mt-3 space-y-1 text-sm text-slate-600">
+                  <div>{company.addressLine1}</div>
+                  <div>{company.addressLine2}</div>
+                </div>
 
-          <label className="mt-4 block text-sm text-slate-700">
-            Message
-            <textarea className="mt-1 w-full rounded-xl border px-3 py-2" name="message" rows={5} />
-          </label>
+                <div className="mt-4 space-y-2 text-sm text-slate-700">
+                  <div className="flex gap-2">
+                    <span className="w-5 shrink-0 text-slate-500">P</span>
+                    <a
+                      className="font-semibold text-slate-900 hover:underline hover:underline-offset-4"
+                      href={`tel:${company.phone}`}
+                    >
+                      {company.phone}
+                    </a>
+                  </div>
 
-          <button
-            type="submit"
-            className="mt-5 w-full rounded-xl px-4 py-2 text-sm font-semibold"
-            style={{ background: "hsl(var(--brand))", color: "hsl(var(--brand-foreground))" }}
-          >
-            Submit
-          </button>
-        </form>
-      </div>
-    </section>
+                  <div className="flex gap-2">
+                    <span className="w-5 shrink-0 text-slate-500">E</span>
+                    <a
+                      className="font-semibold text-slate-900 hover:underline hover:underline-offset-4"
+                      href={`mailto:${company.email}`}
+                    >
+                      {company.email}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-white p-6 ring-1 ring-slate-200/70">
+                <div className="text-sm font-semibold text-slate-900">
+                  Connect with us
+                </div>
+
+                <div className="mt-3">
+                  <SocialLinks size="md" />
+                </div>
+
+                <div className="mt-4 text-sm text-slate-600">
+                  Prefer email?{" "}
+                  <Link
+                    href={`mailto:${company.email}`}
+                    className="font-semibold underline underline-offset-4 hover:opacity-80"
+                  >
+                    Send a message
+                  </Link>
+                  .
+                </div>
+              </div>
+
+              <div className="text-xs text-slate-500 leading-relaxed">
+                Tip: If you include your business type and what you want help
+                with (bookkeeping, cleanup, budgeting, close), we can respond
+                faster.
+              </div>
+            </aside>
+
+            {/* RIGHT (form is the hero) */}
+            <div className="rounded-3xl bg-slate-50 p-7 ring-1 ring-slate-200/70">
+              {/* Form heading aligned with page header rhythm */}
+              <div className="space-y-2">
+                <div className="text-sm font-semibold text-slate-600">
+                  Send a message
+                </div>
+                <div className="text-2xl font-semibold tracking-tight text-slate-900">
+                  Tell us what you need
+                </div>
+                <p className="text-sm text-slate-600">
+                  We’ll reply within one business day.
+                </p>
+              </div>
+
+              <form className="mt-6 space-y-4">
+                <label className="block">
+                  <div className="text-sm font-semibold text-slate-900">
+                    Name
+                  </div>
+                  <input
+                    className="mt-2 w-full rounded-xl bg-white px-4 py-3 text-slate-900 ring-1 ring-slate-200/70 outline-none focus:ring-2 focus:ring-slate-300"
+                    placeholder="Your name"
+                    autoComplete="name"
+                  />
+                </label>
+
+                <label className="block">
+                  <div className="text-sm font-semibold text-slate-900">
+                    Email
+                  </div>
+                  <input
+                    className="mt-2 w-full rounded-xl bg-white px-4 py-3 text-slate-900 ring-1 ring-slate-200/70 outline-none focus:ring-2 focus:ring-slate-300"
+                    placeholder="you@company.com"
+                    type="email"
+                    autoComplete="email"
+                  />
+                </label>
+
+                <label className="block">
+                  <div className="text-sm font-semibold text-slate-900">
+                    Message
+                  </div>
+                  <textarea
+                    rows={6}
+                    className="mt-2 w-full resize-none rounded-xl bg-white px-4 py-3 text-slate-900 ring-1 ring-slate-200/70 outline-none focus:ring-2 focus:ring-slate-300"
+                    placeholder="What are you looking for help with? (bookkeeping, cleanup, budgeting, close, etc.)"
+                  />
+                </label>
+
+                <div className="pt-2 space-y-2">
+                  <PrimaryButton href="#" className="w-fit">
+                    Submit
+                  </PrimaryButton>
+
+                  {/* subtle success expectation */}
+                  <p className="text-xs text-slate-600">
+                    After you submit, we’ll review your note and respond within{" "}
+                    <span className="font-semibold text-slate-900">
+                      one business day
+                    </span>
+                    .
+                  </p>
+                </div>
+
+                <div className="pt-2">
+                  <p className="text-xs text-slate-500 leading-relaxed">
+                    This form is a placeholder right now. When you’re ready, we
+                    can wire it to an email service (Formspree / Resend) or use a
+                    mailto fallback.
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </Section>
+    </div>
   );
 }

@@ -1,13 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root{
+:root {
   /* Vandy Accounting brand colors */
-  --brand: 138 47% 33%;              /* #2E7D32 green */
-  --brand-foreground: 0 0% 100%;     /* white */
-
-  --brand-secondary: 207 79% 20%;    /* #0B3C5D blue */
+  --brand: 138 47% 33%; /* #2E7D32 green */
+  --brand-foreground: 0 0% 100%; /* white */
+  --brand-secondary: 207 79% 20%; /* #0B3C5D blue */
 
   --text: 222 47% 11%;
   --muted: 215 16% 47%;
@@ -16,19 +13,35 @@
   --border: 214 32% 91%;
 }
 
-h1, h2, h3 {
-  color: hsl(var(--brand-secondary));
+@layer base {
+  body {
+    color: hsl(var(--text));
+    background: hsl(var(--bg));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: geometricPrecision;
+  }
+
+  /* Bench-ish typography + rhythm */
+  h1:not([class]),
+  h2:not([class]),
+  h3:not([class]) {
+    color: hsl(var(--brand-secondary));
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    line-height: 1.75;
+  }
 }
 
-body{
-  color: hsl(var(--text));
-  background: hsl(var(--bg));
-}
-
-.container{
-  max-width: 72rem; /* ~ max-w-6xl */
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+@layer components {
+  /* optional: if you want a global container utility */
+  .container {
+    max-width: 72rem; /* ~ max-w-6xl */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
