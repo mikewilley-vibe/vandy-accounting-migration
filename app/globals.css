@@ -26,7 +26,7 @@
   h1:not([class]),
   h2:not([class]),
   h3:not([class]) {
-    color: hsl(var(--brand-secondary));
+
     letter-spacing: -0.02em;
   }
 
