@@ -293,12 +293,12 @@ export default function SiteHeader() {
 
             {servicesOpen ? (
               <div
-                className="absolute left-0 top-full mt-3 w-[340px] rounded-2xl bg-white shadow-lg ring-1 ring-slate-200/70 overflow-hidden"
+                className="absolute left-0 top-full mt-3 w-[340px] rounded-2xl bg-white shadow-lg ring-1 ring-slate-200/70 overflow-hidden flex flex-col max-h-[calc(100vh-120px)]"
                 role="menu"
                 onMouseEnter={() => setServicesOpen(true)}
                 onMouseLeave={() => setServicesOpen(false)}
               >
-                <div className="px-4 pt-4 pb-3 border-b border-slate-200/60">
+                <div className="px-4 pt-4 pb-3 border-b border-slate-200/60 flex-shrink-0">
                   <div className="text-xs font-semibold text-slate-500">
                     Services
                   </div>
@@ -307,7 +307,7 @@ export default function SiteHeader() {
                   </div>
                 </div>
 
-                <div className="p-2">
+                <div className="p-2 overflow-y-auto flex-1">
                   {servicesMenu.map((item) => (
                     <Link
                       key={item.href}
@@ -353,6 +353,27 @@ export default function SiteHeader() {
                       </svg>
                     </Link>
                   </div>
+                </div>
+
+                <div className="px-4 py-3 border-t border-slate-200/60 flex-shrink-0">
+                  <Link
+                    href="/services"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-slate-700 hover:text-slate-900 transition-smooth"
+                    role="menuitem"
+                    onClick={() => setServicesOpen(false)}
+                  >
+                    View all services
+                    <svg
+                      className="h-3 w-3"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      aria-hidden="true"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </Link>
                 </div>
               </div>
             ) : null}
