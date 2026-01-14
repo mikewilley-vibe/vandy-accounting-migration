@@ -198,6 +198,7 @@ export default function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const servicesWrapRef = useRef<HTMLDivElement | null>(null);
+  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Close menus on Escape
   useEffect(() => {
@@ -223,6 +224,23 @@ export default function SiteHeader() {
     document.addEventListener("mousedown", onDocMouseDown);
     return () => document.removeEventListener("mousedown", onDocMouseDown);
   }, []);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    };
+  }, []);
+
+  const handleServicesMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setServicesOpen(false);
+    }, 300);
+  };
+
+  const handleServicesMouseEnter = () => {
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+  };
 
   const pathname = usePathname();
   const activeServiceLabel = useMemo(() => {
@@ -256,8 +274,8 @@ export default function SiteHeader() {
           <div
             ref={servicesWrapRef}
             className="relative"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
+            onMouseEnter={handleServicesMouseEnter}
+            onMouseLeave={handleServicesMouseLeave}
           >
             <button
               type="button"
@@ -295,8 +313,8 @@ export default function SiteHeader() {
               <div
                 className="absolute left-0 top-full mt-3 w-[340px] rounded-2xl bg-white shadow-lg ring-1 ring-slate-200/70 overflow-hidden flex flex-col max-h-[calc(100vh-120px)]"
                 role="menu"
-                onMouseEnter={() => setServicesOpen(true)}
-                onMouseLeave={() => setServicesOpen(false)}
+                onMouseEnter={handleServicesMouseEnter}
+                onMouseLeave={handleServicesMouseLeave}
               >
                 <div className="px-4 pt-4 pb-3 border-b border-slate-200/60 flex-shrink-0">
                   <div className="text-xs font-semibold text-slate-500">
