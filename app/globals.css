@@ -34,7 +34,134 @@
     line-height: 1.75;
   }
 }
+@layer utilities {
+  /* Slow, subtle "enterprise" gradient motion */
+  .animated-gradient {
+    background-size: 200% 200%;
+    animation: gradientShift 18s ease-in-out infinite;
+  }
 
+  @keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Fade-in animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Staggered card animations */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  /* Stagger delays */
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+  .animation-delay-600 { animation-delay: 600ms; }
+
+  /* Glow effect on hover */
+  @keyframes softGlow {
+    0% {
+      box-shadow: 0 0 0 0 rgba(138, 180, 248, 0.1);
+    }
+    70% {
+      box-shadow: 0 0 0 8px rgba(138, 180, 248, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(138, 180, 248, 0);
+    }
+  }
+
+  .hover-glow {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-glow:hover {
+    animation: softGlow 2s infinite;
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .transition-smooth-slow {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animated-gradient {
+      animation: none;
+    }
+    
+    .animate-fade-in,
+    .animate-fade-in-up,
+    .animate-slide-in-left {
+      animation: none;
+      opacity: 1;
+    }
+
+    .hover-glow {
+      transition: none;
+    }
+
+    .hover-glow:hover {
+      animation: none;
+    }
+
+    .transition-smooth,
+    .transition-smooth-slow {
+      transition: none;
+    }
+  }
+}
 @layer components {
   /* optional: if you want a global container utility */
   .container {
@@ -43,5 +170,108 @@
     margin-right: auto;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+  @keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 10s ease-in-out infinite;
+}
+
+  /* Button interactions */
+  .btn-primary {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(16, 185, 129, 0.25);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  /* Focus states for accessibility */
+  .focus-ring:focus-visible {
+    outline: 2px solid rgb(16, 185, 129);
+    outline-offset: 2px;
+  }
+
+  /* Smooth scale on interaction */
+  .scale-on-hover {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .scale-on-hover:hover {
+    transform: scale(1.02);
+  }
+
+  /* Link underline animation */
+  @keyframes underlineExpand {
+    from {
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    to {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+
+  .link-underline {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .link-underline:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* Respect reduced motion for new animations */
+  @media (prefers-reduced-motion: reduce) {
+    .btn-primary,
+    .scale-on-hover,
+    .link-underline,
+    .link-underline::after {
+      transition: none;
+    }
+
+    .btn-primary:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .scale-on-hover:hover {
+      transform: none;
+    }
+
+    .link-underline::after {
+      transform: scaleX(1);
+    }
   }
 }

@@ -12,21 +12,23 @@ export default function HomeHowItWorks() {
   return (
     <Section
       variant="plain"
-      className="rounded-3xl bg-white ring-1 ring-slate-900/20"
+      className="rounded-3xl bg-white ring-1 ring-slate-900/20 transition-smooth hover:ring-slate-900/30 hover:shadow-md"
     >
       <SectionHeader
         eyebrow="How it works"
         title="Calm, consistent monthly close."
         subtitle="We keep your books clean, reconcile accounts, and deliver reporting you can actually use—without the chaos."
-        className="text-slate-900"
+        className="text-slate-900 animate-fade-in-up"
       />
 
       <div className="px-7 pb-10 md:px-10 md:pb-12">
         <div className="mt-2 grid gap-4 md:grid-cols-3">
-          {steps.map((x) => (
+          {steps.map((x, index) => (
             <div
               key={x.t}
-              className="rounded-2xl bg-slate-50 border border-slate-200/70 p-6"
+              className={`animate-fade-in-up animation-delay-${
+                100 + index * 100
+              } rounded-2xl bg-gradient-to-br from-slate-50 to-slate-50/50 border border-slate-200/70 p-6 transition-smooth hover:border-slate-300 hover:bg-white hover:shadow-md scale-on-hover`}
             >
               <div className="text-sm font-semibold text-slate-600">{x.k}</div>
               <div className="mt-2 text-lg font-semibold text-slate-900">{x.t}</div>

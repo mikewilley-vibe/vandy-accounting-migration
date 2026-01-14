@@ -10,11 +10,12 @@ export default function HomeTestimonials() {
         eyebrow="Testimonials"
         title="What others say"
         subtitle="Real words from clients and long-term partners."
+        className="animate-fade-in-up"
       />
 
       <div className="px-7 pb-10 md:px-10 md:pb-12">
-        <blockquote className="rounded-2xl bg-white/5 border border-white/10 p-7">
-          <p className="text-white/85 leading-relaxed">
+        <blockquote className="animate-fade-in-up animation-delay-200 rounded-2xl bg-gradient-to-br from-white/8 to-white/3 border border-white/15 p-7 transition-smooth hover:border-white/25 hover:from-white/12 hover:to-white/6 hover:shadow-xl">
+          <p className="text-white/85 leading-relaxed transition-smooth">
             “Julie’s academic accomplishments and dual background in public accounting and
             non-profit service is an ideal blend for anyone seeking someone that will ensure
             maintenance of required recordkeeping but have an above average eye toward improvement
@@ -34,7 +35,7 @@ export default function HomeTestimonials() {
           </div>
         </blockquote>
 
-        <div className="mt-8 border-t border-white/10 pt-6 text-white/70">
+        <div className="animate-fade-in-up animation-delay-300 mt-8 border-t border-white/10 pt-6 text-white/70 transition-smooth">
           Vandy Accounting Solutions is a proud Gold-certified Intuit QuickBooks ProAdvisor.
         </div>
       </div>

@@ -14,7 +14,7 @@ export default function PrimaryButton({
     <Link
       href={href}
       className={[
-        "inline-flex items-center justify-center rounded-xl bg-emerald-700 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-800",
+        "btn-primary focus-ring inline-flex items-center justify-center rounded-xl bg-emerald-700 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-800 active:shadow-md",
         className,
       ].join(" ")}
     >
