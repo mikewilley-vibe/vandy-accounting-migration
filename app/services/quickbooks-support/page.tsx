@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ServicePage";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "QuickBooks Support | Vandy Accounting Solutions",
@@ -9,7 +10,16 @@ export const metadata: Metadata = {
 
 export default function QuickBooksSupportPage() {
   return (
-    <ServicePage
+    <>
+      <div className="mb-6">
+        <Breadcrumb
+          items={[
+            { label: "Services", href: "/services" },
+            { label: "QuickBooks support", href: "/services/quickbooks-support" },
+          ]}
+        />
+      </div>
+      <ServicePage
       title="QuickBooks support"
       description="Practical guidance and cleanup so QuickBooks stays accurate, usable, and ready for reporting—without the stress."
       idealFor={[
@@ -32,8 +42,9 @@ export default function QuickBooksSupportPage() {
         "Less time spent fixing problems later",
         "A repeatable month-end process",
       ]}
-      ctaHeading="Want QuickBooks that’s actually trustworthy?"
-      ctaSubheading="Tell us what you’re seeing and we’ll recommend the right next step."
+      ctaHeading="Want QuickBooks that's actually trustworthy?"
+      ctaSubheading="Tell us what you're seeing and we'll recommend the right next step."
     />
+    </>
   );
 }

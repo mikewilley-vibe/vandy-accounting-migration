@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ServicePage";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "Month-End & Year-End Coordination | Vandy Accounting Solutions",
@@ -9,7 +10,16 @@ export const metadata: Metadata = {
 
 export default function CloseCoordinationPage() {
   return (
-    <ServicePage
+    <>
+      <div className="mb-6">
+        <Breadcrumb
+          items={[
+            { label: "Services", href: "/services" },
+            { label: "Month-end & year-end", href: "/services/month-end-year-end" },
+          ]}
+        />
+      </div>
+      <ServicePage
       title="Month-end & year-end coordination"
       description="A calmer close process with clean reporting—so year-end doesn’t feel like a fire drill."
       idealFor={[
@@ -32,7 +42,8 @@ export default function CloseCoordinationPage() {
         "Less stress during tax season",
       ]}
       ctaHeading="Want a month-end close that feels predictable?"
-      ctaSubheading="Tell us what’s currently slowing you down—we’ll recommend a plan."
+      ctaSubheading="Tell us what's currently slowing you down—we'll recommend a plan."
     />
+    </>
   );
 }

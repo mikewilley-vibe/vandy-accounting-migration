@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ServicePage";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "Remote Bookkeeping | Vandy Accounting Solutions",
@@ -9,7 +10,16 @@ export const metadata: Metadata = {
 
 export default function RemoteBookkeepingPage() {
   return (
-    <ServicePage
+    <>
+      <div className="mb-6">
+        <Breadcrumb
+          items={[
+            { label: "Services", href: "/services" },
+            { label: "Remote bookkeeping", href: "/services/remote-bookkeeping" },
+          ]}
+        />
+      </div>
+      <ServicePage
       title="Remote bookkeeping"
       description="Consistent, accurate bookkeeping—handled remotely—so your financial records stay clean, reliable, and ready for decision-making."
       idealFor={[
@@ -33,7 +43,8 @@ export default function RemoteBookkeepingPage() {
         "Smoother tax season and year-end reporting",
       ]}
       ctaHeading="Ready for cleaner, more reliable books?"
-      ctaSubheading="Tell us about your business and we’ll recommend the right level of bookkeeping support."
+      ctaSubheading="Tell us about your business and we'll recommend the right level of bookkeeping support."
     />
+    </>
   );
 }

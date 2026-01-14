@@ -4,6 +4,7 @@ import Link from "next/link";
 import Section from "@/components/Section";
 import PrimaryButton from "@/components/PrimaryButton";
 import SocialLinks from "@/components/SocialLinks";
+import ContactForm from "@/components/ContactForm";
 import { company } from "@/data/company";
 
 export const metadata: Metadata = {
@@ -118,7 +119,9 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              <form className="mt-6 space-y-4">
+              <div className="mt-6">
+                <ContactForm />
+              </div>
                 <label className="block">
                   <div className="text-sm font-semibold text-slate-900">
                     Name
@@ -175,8 +178,8 @@ export default function ContactPage() {
                     mailto fallback.
                   </p>
                 </div>
-              </form>
-            </div>
+                </div>
+              </div>
           </div>
         </div>
       </Section>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ServicePage";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "Payroll Partnership | Vandy Accounting Solutions",
@@ -9,7 +10,16 @@ export const metadata: Metadata = {
 
 export default function PayrollPartnershipPage() {
   return (
-    <ServicePage
+    <>
+      <div className="mb-6">
+        <Breadcrumb
+          items={[
+            { label: "Services", href: "/services" },
+            { label: "Payroll partnership", href: "/services/payroll-partnership" },
+          ]}
+        />
+      </div>
+      <ServicePage
       title="Payroll partnership"
       description="Payroll coordination through an ADP partnership—built to make payroll smoother, reduce mistakes, and keep your books clean."
       idealFor={[
@@ -32,7 +42,8 @@ export default function PayrollPartnershipPage() {
         "Confidence that payroll is handled correctly",
       ]}
       ctaHeading="Want payroll that runs smoother?"
-      ctaSubheading="Tell us your pay schedule and current setup—we’ll recommend the right next step."
+      ctaSubheading="Tell us your pay schedule and current setup—we'll recommend the right next step."
     />
+    </>
   );
 }

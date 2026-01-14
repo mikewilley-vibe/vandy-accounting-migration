@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import MobileCtaButton from "@/components/MobileCtaButton";
 
 export const metadata: Metadata = {
   title: "Vandy Accounting Solutions | Your Outsourced Accounting Solution",
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         <main className="mx-auto max-w-6xl px-6 py-10 md:py-14">{children}</main>
         <SiteFooter />
+        <MobileCtaButton />
       </body>
     </html>
   );

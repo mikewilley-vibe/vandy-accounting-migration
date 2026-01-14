@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ServicePage";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
   title: "Budget Preparation | Vandy Accounting Solutions",
@@ -9,7 +10,16 @@ export const metadata: Metadata = {
 
 export default function BudgetPreparationPage() {
   return (
-    <ServicePage
+    <>
+      <div className="mb-6">
+        <Breadcrumb
+          items={[
+            { label: "Services", href: "/services" },
+            { label: "Budget preparation", href: "/services/budget-preparation" },
+          ]}
+        />
+      </div>
+      <ServicePage
       title="Budget preparation"
       description="Practical budgeting and forecasting—built around your business—so you can plan with clarity and confidence."
       idealFor={[
@@ -32,7 +42,8 @@ export default function BudgetPreparationPage() {
         "More confident decisions month to month",
       ]}
       ctaHeading="Want a budget you can actually use?"
-      ctaSubheading="Tell us your goals and where you are today—we’ll recommend a plan."
+      ctaSubheading="Tell us your goals and where you are today—we'll recommend a plan."
     />
+    </>
   );
 }

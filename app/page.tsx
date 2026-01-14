@@ -7,6 +7,8 @@ import HomeFinalCta from "@/components/HomeFinalCta";
 import FullBleedSection from "@/components/FullBleedSection";
 import AwardStrip from "@/components/AwardStrip";
 import AnimatedBackdrop from "@/components/AnimatedBackdrop";
+import ClientTrustBadges from "@/components/ClientTrustBadges";
+import ResourcesSection from "@/components/ResourcesSection";
 
 const services = [
   {
@@ -61,6 +63,12 @@ export default function HomePage() {
 
       {/* FINAL CTA (white outlined, visible text) */}
       <HomeFinalCta />
+
+      {/* TRUST BADGES */}
+      <ClientTrustBadges />
+
+      {/* RESOURCES */}
+      <ResourcesSection />
     </div>
   );
 }
