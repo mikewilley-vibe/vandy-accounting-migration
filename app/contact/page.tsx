@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Section from "@/components/Section";
-import PrimaryButton from "@/components/PrimaryButton";
 import SocialLinks from "@/components/SocialLinks";
 import ContactForm from "@/components/ContactForm";
 import { company } from "@/data/company";
@@ -115,71 +114,14 @@ export default function ContactPage() {
                   Tell us what you need
                 </div>
                 <p className="text-sm text-slate-600">
-                  We’ll reply within one business day.
+                  We'll reply within one business day.
                 </p>
               </div>
 
               <div className="mt-6">
                 <ContactForm />
               </div>
-                <label className="block">
-                  <div className="text-sm font-semibold text-slate-900">
-                    Name
-                  </div>
-                  <input
-                    className="mt-2 w-full rounded-xl bg-white px-4 py-3 text-slate-900 ring-1 ring-slate-200/70 outline-none focus:ring-2 focus:ring-slate-300"
-                    placeholder="Your name"
-                    autoComplete="name"
-                  />
-                </label>
-
-                <label className="block">
-                  <div className="text-sm font-semibold text-slate-900">
-                    Email
-                  </div>
-                  <input
-                    className="mt-2 w-full rounded-xl bg-white px-4 py-3 text-slate-900 ring-1 ring-slate-200/70 outline-none focus:ring-2 focus:ring-slate-300"
-                    placeholder="you@company.com"
-                    type="email"
-                    autoComplete="email"
-                  />
-                </label>
-
-                <label className="block">
-                  <div className="text-sm font-semibold text-slate-900">
-                    Message
-                  </div>
-                  <textarea
-                    rows={6}
-                    className="mt-2 w-full resize-none rounded-xl bg-white px-4 py-3 text-slate-900 ring-1 ring-slate-200/70 outline-none focus:ring-2 focus:ring-slate-300"
-                    placeholder="What are you looking for help with? (bookkeeping, cleanup, budgeting, close, etc.)"
-                  />
-                </label>
-
-                <div className="pt-2 space-y-2">
-                  <PrimaryButton href="#" className="w-fit">
-                    Submit
-                  </PrimaryButton>
-
-                  {/* subtle success expectation */}
-                  <p className="text-xs text-slate-600">
-                    After you submit, we’ll review your note and respond within{" "}
-                    <span className="font-semibold text-slate-900">
-                      one business day
-                    </span>
-                    .
-                  </p>
-                </div>
-
-                <div className="pt-2">
-                  <p className="text-xs text-slate-500 leading-relaxed">
-                    This form is a placeholder right now. When you’re ready, we
-                    can wire it to an email service (Formspree / Resend) or use a
-                    mailto fallback.
-                  </p>
-                </div>
-                </div>
-              </div>
+            </div>
           </div>
         </div>
       </Section>
