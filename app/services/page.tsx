@@ -129,7 +129,7 @@ export default function ServicesPage() {
         <div className="grid gap-4 md:grid-cols-2">
           {services.map((s, i) => (
             <div key={s.slug} className={`animate-fade-in-up animation-delay-${300 + (i + 1) * 100}`}>
-              <ServiceCard service={s} />
+              <ServiceCard href={`/services/${s.slug}`} title={s.title} desc={s.short} />
             </div>
           ))}
         </div>

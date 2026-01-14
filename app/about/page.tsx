@@ -99,20 +99,20 @@ export default function AboutPage() {
 
         {/* clear float so following sections lay out correctly */}
         <div className="clear-both" />
-   {/* TESTIMONIALS */}
-<section className="mt-20">
-  <h2 className="animate-fade-in-up text-3xl font-semibold tracking-tight text-slate-900">
-    Client testimonials
-  </h2>
-  <p className="animate-fade-in-up animation-delay-100 mt-2 text-lg text-slate-600 max-w-[60ch]">
-    Long-term partnerships built on trust, clarity, and results.
-  </p>
+      </section>
 
-  <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:items-start">
+      {/* TESTIMONIALS */}
+      <section className="mt-20">
+        <h2 className="animate-fade-in-up text-3xl font-semibold tracking-tight text-slate-900">
+          Client testimonials
+        </h2>
+        <p className="animate-fade-in-up animation-delay-100 mt-2 text-lg text-slate-600 max-w-[60ch]">
+          Long-term partnerships built on trust, clarity, and results.
+        </p>
+
+        <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:items-start">
     {/* Testimonial 1 */}
     <blockquote className="animate-fade-in-up animation-delay-200 rounded-2xl bg-slate-50 p-8 ring-1 ring-slate-200/60 transition-smooth hover:ring-slate-200 hover:bg-white hover:shadow-md scale-on-hover">
-    {/* Testimonial 1 */}
-    <blockquote className="rounded-2xl bg-slate-50 p-8 ring-1 ring-slate-200/60">
       <p className="text-slate-800 leading-relaxed">
         “Julie’s academic accomplishments and dual background in public accounting and
         non-profit service is an ideal blend for anyone seeking someone that will ensure
@@ -178,9 +178,9 @@ export default function AboutPage() {
         <br />
         Office Manager of Pro Plastics Sales &amp; Service
       </footer>
-    </blockquote>
-  </div>
-</section>
+      </blockquote>
+        </div>
+      </section>
 
       {/* FINAL CTA (dark band, consistent with Home/Services) */}
       <section className="animate-fade-in-up animation-delay-600 rounded-3xl bg-slate-900 p-10 md:p-14 text-white transition-smooth hover:bg-slate-800">
