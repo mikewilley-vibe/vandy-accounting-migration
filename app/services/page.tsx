@@ -79,22 +79,22 @@ export default function ServicesPage() {
       {/* HERO (tighter) */}
       <Section className="bg-white">
         <div className="px-7 py-8 md:px-10 md:py-10">
-          <p className="text-sm font-semibold text-slate-600">Services</p>
+          <p className="animate-fade-in text-sm font-semibold text-slate-600">Services</p>
 
           <div className="mt-2 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
-              <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">
+              <h1 className="animate-fade-in-up animation-delay-100 text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">
                 Support that makes your accounting feel easier
               </h1>
-              <p className="mt-3 text-base md:text-lg text-slate-600">
+              <p className="animate-fade-in-up animation-delay-200 mt-3 text-base md:text-lg text-slate-600">
                 Clean books, consistent close, and clear reporting—so you can make decisions with confidence.
               </p>
 
-              <div className="mt-5 flex flex-wrap gap-2">
-                {painPoints.map((p) => (
+              <div className="animate-fade-in-up animation-delay-300 mt-5 flex flex-wrap gap-2">
+                {painPoints.map((p, i) => (
                   <span
                     key={p}
-                    className="rounded-full bg-slate-50 px-3 py-1 text-sm text-slate-700 ring-1 ring-slate-200/70"
+                    className={`animate-fade-in animation-delay-${300 + i * 50} rounded-full bg-slate-50 px-3 py-1 text-sm text-slate-700 ring-1 ring-slate-200/70 transition-smooth hover:bg-slate-100 hover:ring-slate-300`}
                   >
                     {p}
                   </span>
@@ -102,12 +102,11 @@ export default function ServicesPage() {
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="animate-fade-in-up animation-delay-400 flex flex-wrap items-center gap-3">
               <PrimaryButton href="/contact">Request a quote</PrimaryButton>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold
-                           ring-1 ring-slate-200/70 bg-white text-slate-900 shadow-sm transition hover:bg-slate-50"
+                className="focus-ring inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold ring-1 ring-slate-200/70 bg-white text-slate-900 shadow-sm transition-smooth hover:bg-slate-50 hover:ring-slate-300"
               >
                 Book a call
               </Link>
@@ -118,8 +117,8 @@ export default function ServicesPage() {
 
       {/* SERVICES GRID */}
       <section className="space-y-4">
-        <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200/70">
-          <h2 className="text-2xl font-semibold tracking-tight text-white-900">
+        <div className="animate-fade-in-up animation-delay-300 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200/70 transition-smooth hover:shadow-md">
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
             What we offer
           </h2>
           <p className="mt-2 text-slate-600 max-w-2xl">
@@ -128,8 +127,10 @@ export default function ServicesPage() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
-          {services.map((s) => (
-            <ServiceCard key={s.slug} service={s} />
+          {services.map((s, i) => (
+            <div key={s.slug} className={`animate-fade-in-up animation-delay-${300 + (i + 1) * 100}`}>
+              <ServiceCard service={s} />
+            </div>
           ))}
         </div>
       </section>
@@ -183,18 +184,18 @@ export default function ServicesPage() {
       {/* FAQ */}
       <Section className="bg-white">
         <div className="px-7 py-8 md:px-10 md:py-10">
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
+          <h2 className="animate-fade-in-up text-2xl font-semibold tracking-tight text-slate-900">
             FAQs
           </h2>
-          <p className="mt-2 text-slate-600 max-w-2xl">
+          <p className="animate-fade-in-up animation-delay-100 mt-2 text-slate-600 max-w-2xl">
             Quick answers to common questions before you reach out.
           </p>
 
           <div className="mt-7 grid gap-4 md:grid-cols-2">
-            {faqs.map((f) => (
+            {faqs.map((f, i) => (
               <div
                 key={f.q}
-                className="rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200/70"
+                className={`animate-fade-in-up animation-delay-${200 + i * 100} rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200/70 transition-smooth hover:ring-slate-200 hover:bg-white hover:shadow-md`}
               >
                 <div className="font-semibold text-slate-900">{f.q}</div>
                 <p className="mt-2 text-slate-700 leading-relaxed">{f.a}</p>
@@ -209,14 +210,16 @@ export default function ServicesPage() {
         <div className="px-7 py-8 md:px-10 md:py-10">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
-              <h3 className="text-2xl font-semibold tracking-tight text-white">
+              <h3 className="animate-fade-in-up text-2xl font-semibold tracking-tight text-white">
                 Ready for cleaner books and clearer decisions?
               </h3>
-              <p className="mt-2 text-slate-200 text-lg">
+              <p className="animate-fade-in-up animation-delay-100 mt-2 text-slate-100 text-lg">
                 Send a note and we’ll recommend the right next step.
               </p>
             </div>
-            <PrimaryButton href="/contact">Contact us</PrimaryButton>
+            <div className="animate-fade-in-up animation-delay-200">
+              <PrimaryButton href="/contact">Contact us</PrimaryButton>
+            </div>
           </div>
         </div>
       </Section>

@@ -137,7 +137,7 @@ export default function ServicePage({
               <h3 className="text-2xl font-semibold tracking-tight text-white">
                 {ctaHeading}
               </h3>
-              <p className="mt-2 text-lg text-slate-200">{ctaSubheading}</p>
+              <p className="mt-2 text-lg text-black">{ctaSubheading}</p>
             </div>
             <PrimaryButton href="/contact">Contact us</PrimaryButton>
           </div>

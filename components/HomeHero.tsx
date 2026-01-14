@@ -55,13 +55,13 @@ export default function HomeHero() {
           {/* RIGHT (contact card) */}
           <div className="animate-fade-in-up animation-delay-300 rounded-3xl bg-white border border-slate-200/60 p-7 shadow-sm transition-smooth hover:shadow-lg hover:border-slate-300">
             <div className="text-sm font-semibold text-slate-900">Contact</div>
-            <p className="mt-3 text-slate-600">
+            <p className="mt-3 text-slate-700">
               Reach out by email or phone. We typically respond within one business day.
             </p>
 
-            <div className="mt-5 space-y-2 text-sm text-slate-700">
+            <div className="mt-5 space-y-2 text-sm text-slate-800">
               <div>
-                <span className="font-semibold text-slate-500">E</span>{" "}
+                <span className="font-semibold text-slate-600">E</span>{" "}
                 <a
                   className="focus-ring font-semibold text-slate-900 link-underline"
                   href="mailto:info@vandyaccounting.com"
@@ -70,7 +70,7 @@ export default function HomeHero() {
                 </a>
               </div>
               <div>
-                <span className="font-semibold text-slate-500">P</span>{" "}
+                <span className="font-semibold text-slate-600">P</span>{" "}
                 <a
                   className="focus-ring font-semibold text-slate-900 link-underline"
                   href="tel:+13174906113"
@@ -78,7 +78,7 @@ export default function HomeHero() {
                   (317) 490-6113
                 </a>
               </div>
-              <div className="text-slate-500">
+              <div className="text-slate-700">
                 7755 Shasta Drive, Indianapolis, IN 46217
               </div>
             </div>

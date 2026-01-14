@@ -19,13 +19,13 @@ export default function ContactPage() {
         {/* PAGE HEADER (polished + aligned) */}
         <div className="px-7 pt-7 md:px-10 md:pt-10">
           <div className="space-y-3">
-            <div className="text-sm font-semibold text-slate-600">Contact</div>
+            <div className="animate-fade-in text-sm font-semibold text-slate-600">Contact</div>
 
-            <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">
+            <h1 className="animate-fade-in-up animation-delay-100 text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">
               Get in touch
             </h1>
 
-            <p className="text-lg text-slate-600 max-w-2xl">
+            <p className="animate-fade-in-up animation-delay-200 text-lg text-slate-600 max-w-2xl">
               Reach out directly or send a message. We typically respond within
               one business day.
             </p>
@@ -42,7 +42,7 @@ export default function ContactPage() {
           <div className="grid gap-10 md:grid-cols-2 md:items-start">
             {/* LEFT (quieter, more scannable) */}
             <aside className="space-y-6">
-              <div className="rounded-2xl bg-slate-50/60 p-6 ring-1 ring-slate-200/70">
+              <div className="animate-fade-in-up animation-delay-300 rounded-2xl bg-slate-50/60 p-6 ring-1 ring-slate-200/70 transition-smooth hover:bg-slate-50 hover:ring-slate-200/100">
                 <div className="text-sm font-semibold text-slate-900">
                   {company.name}
                 </div>
@@ -56,7 +56,7 @@ export default function ContactPage() {
                   <div className="flex gap-2">
                     <span className="w-5 shrink-0 text-slate-500">P</span>
                     <a
-                      className="font-semibold text-slate-900 hover:underline hover:underline-offset-4"
+                      className="focus-ring font-semibold text-slate-900 link-underline"
                       href={`tel:${company.phone}`}
                     >
                       {company.phone}
@@ -66,7 +66,7 @@ export default function ContactPage() {
                   <div className="flex gap-2">
                     <span className="w-5 shrink-0 text-slate-500">E</span>
                     <a
-                      className="font-semibold text-slate-900 hover:underline hover:underline-offset-4"
+                      className="focus-ring font-semibold text-slate-900 link-underline"
                       href={`mailto:${company.email}`}
                     >
                       {company.email}
@@ -75,7 +75,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="rounded-2xl bg-white p-6 ring-1 ring-slate-200/70">
+              <div className="animate-fade-in-up animation-delay-400 rounded-2xl bg-white p-6 ring-1 ring-slate-200/70 transition-smooth hover:ring-slate-200 hover:shadow-md">
                 <div className="text-sm font-semibold text-slate-900">
                   Connect with us
                 </div>
@@ -88,7 +88,7 @@ export default function ContactPage() {
                   Prefer email?{" "}
                   <Link
                     href={`mailto:${company.email}`}
-                    className="font-semibold underline underline-offset-4 hover:opacity-80"
+                    className="focus-ring font-semibold link-underline"
                   >
                     Send a message
                   </Link>
@@ -96,7 +96,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="text-xs text-slate-500 leading-relaxed">
+              <div className="animate-fade-in-up animation-delay-500 text-xs text-slate-500 leading-relaxed">
                 Tip: If you include your business type and what you want help
                 with (bookkeeping, cleanup, budgeting, close), we can respond
                 faster.
@@ -104,7 +104,7 @@ export default function ContactPage() {
             </aside>
 
             {/* RIGHT (form is the hero) */}
-            <div className="rounded-3xl bg-slate-50 p-7 ring-1 ring-slate-200/70">
+            <div className="animate-fade-in-up animation-delay-300 rounded-3xl bg-slate-50 p-7 ring-1 ring-slate-200/70 transition-smooth hover:ring-slate-200 hover:bg-white">
               {/* Form heading aligned with page header rhythm */}
               <div className="space-y-2">
                 <div className="text-sm font-semibold text-slate-600">

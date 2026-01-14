@@ -295,6 +295,8 @@ export default function SiteHeader() {
               <div
                 className="absolute left-0 top-full mt-3 w-[340px] rounded-2xl bg-white shadow-lg ring-1 ring-slate-200/70 overflow-hidden"
                 role="menu"
+                onMouseEnter={() => setServicesOpen(true)}
+                onMouseLeave={() => setServicesOpen(false)}
               >
                 <div className="px-4 pt-4 pb-3 border-b border-slate-200/60">
                   <div className="text-xs font-semibold text-slate-500">
@@ -310,7 +312,7 @@ export default function SiteHeader() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="group flex items-start gap-3 rounded-xl px-3 py-2 hover:bg-slate-50"
+                      className="group flex items-start gap-3 rounded-xl px-3 py-2 transition-smooth hover:bg-slate-50"
                       role="menuitem"
                       onClick={() => setServicesOpen(false)}
                     >
@@ -334,10 +336,21 @@ export default function SiteHeader() {
                   <div className="mt-2 px-3 pb-2">
                     <Link
                       href="/services"
-                      className="text-xs font-semibold underline underline-offset-4 text-slate-700 hover:text-slate-900"
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-slate-700 hover:text-slate-900 transition-smooth"
+                      role="menuitem"
                       onClick={() => setServicesOpen(false)}
                     >
-                      View all services →
+                      View all services
+                      <svg
+                        className="h-3 w-3"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        aria-hidden="true"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
                     </Link>
                   </div>
                 </div>
