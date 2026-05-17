@@ -12,7 +12,7 @@ const inputError = 'border-red-300 bg-red-50/30 focus:border-red-400 focus:ring-
 
 export default function ContactForm() {
   const [state, setState] = useState<FormState>('idle');
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', service: '', message: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validateForm = () => {
@@ -50,7 +50,7 @@ export default function ContactForm() {
       });
       if (response.ok) {
         setState('success');
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', service: '', message: '' });
         setTimeout(() => setState('idle'), 6000);
       } else {
         setState('error');
@@ -92,6 +92,39 @@ export default function ContactForm() {
         {errors.email && <p className="mt-1.5 text-xs font-medium text-red-600">{errors.email}</p>}
       </label>
 
+      <div className="grid gap-5 sm:grid-cols-2">
+        <label className="block">
+          <span className="text-sm font-medium text-slate-700">Phone Number <span className="text-slate-400 font-normal">(optional)</span></span>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            className={`${inputBase} ${inputValid}`}
+            placeholder="(317) 555-0100"
+            autoComplete="tel"
+          />
+        </label>
+
+        <label className="block">
+          <span className="text-sm font-medium text-slate-700">Service Needed <span className="text-slate-400 font-normal">(optional)</span></span>
+          <select
+            name="service"
+            value={formData.service}
+            onChange={(e) => setFormData((prev) => ({ ...prev, service: e.target.value }))}
+            className={`${inputBase} ${inputValid} cursor-pointer`}
+          >
+            <option value="">Select a service...</option>
+            <option>Remote Bookkeeping</option>
+            <option>QuickBooks Support</option>
+            <option>Payroll Partnership</option>
+            <option>Month-End &amp; Year-End Close</option>
+            <option>Budget Preparation</option>
+            <option>Not sure yet</option>
+          </select>
+        </label>
+      </div>
+
       <label className="block">
         <span className="text-sm font-medium text-slate-700">How can we help?</span>
         <textarea
@@ -128,7 +161,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={state === 'loading'}
-          className="group w-full inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-4 text-[15px] font-semibold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-lg hover:from-emerald-500 hover:to-teal-500 active:translate-y-0 active:scale-100 active:shadow-md disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+          className="group w-full inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-blue-700 to-emerald-600 px-6 py-4 text-[15px] font-bold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-lg hover:from-blue-600 hover:to-emerald-500 active:translate-y-0 active:scale-100 active:shadow-md disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
         >
           {state === 'loading' ? (
             <>

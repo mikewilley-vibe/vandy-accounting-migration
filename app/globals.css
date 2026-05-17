@@ -274,4 +274,56 @@
       transform: scaleX(1);
     }
   }
+
+  /* ---- Glassmorphism cards ---- */
+  .glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .glass-light {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+  }
+
+  /* ---- Gradient text ---- */
+  .gradient-text {
+    background: linear-gradient(135deg, #3b82f6, #10b981);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .gradient-text-brand {
+    background: linear-gradient(135deg, #0B3C5D, #059669);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ---- Elevated card ---- */
+  .card-elevated {
+    background: white;
+    border-radius: 1rem;
+    border: 1px solid rgb(226 232 240);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  .card-elevated:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08), 0 12px 40px rgba(16,185,129,0.08);
+    transform: translateY(-2px);
+  }
+
+  /* ---- Section divider ---- */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgb(226 232 240), transparent);
+    border: none;
+    margin: 0;
+  }
 }

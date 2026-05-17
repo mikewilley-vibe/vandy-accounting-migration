@@ -78,7 +78,7 @@ const faqs = [
 
 export default function ServicesPage() {
   return (
-    <div className="space-y-14">
+    <div className="mx-auto max-w-6xl px-6 py-10 md:py-14 space-y-14">
       {/* HERO (tighter) */}
       <Section className="bg-white">
         <div className="px-7 py-8 md:px-10 md:py-10">

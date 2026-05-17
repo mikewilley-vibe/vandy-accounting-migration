@@ -15,37 +15,43 @@ export default function CollapsibleFaq({ faqs }: { faqs: FaqItem[] }) {
   };
 
   return (
-    <div className="mt-7 grid gap-4 md:grid-cols-2">
+    <div className="mt-7 grid gap-3 md:grid-cols-2">
       {faqs.map((f, i) => (
         <div
           key={f.q}
-          className={`animate-fade-in-up animation-delay-${
-            200 + i * 100
-          } rounded-2xl bg-slate-50 ring-1 ring-slate-200/70 transition-smooth hover:ring-slate-200 hover:bg-white hover:shadow-md overflow-hidden`}
+          className={`rounded-2xl border bg-white shadow-sm overflow-hidden transition-all duration-200 ${
+            openIndex === i
+              ? 'border-emerald-200 shadow-md'
+              : 'border-slate-200 hover:border-slate-300 hover:shadow-md'
+          }`}
         >
           <button
             onClick={() => toggleFaq(i)}
-            className="w-full text-left p-6 focus:outline-none focus-ring flex items-center justify-between hover:bg-slate-100/50 transition-smooth"
+            className="w-full text-left px-6 py-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-inset flex items-center justify-between gap-4 transition-colors duration-150 hover:bg-slate-50/60"
             aria-expanded={openIndex === i}
           >
-            <div className="font-semibold text-slate-900">{f.q}</div>
-            <svg
-              className={`h-5 w-5 text-slate-600 transition-transform duration-300 ${
-                openIndex === i ? 'rotate-180' : ''
-              }`}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              aria-hidden="true"
-            >
-              <path d="M6 9l6 6 6-6" />
-            </svg>
+            <span className="font-semibold text-slate-900 text-[15px] leading-snug">{f.q}</span>
+            <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all duration-200 ${
+              openIndex === i
+                ? 'bg-emerald-500 text-white rotate-180'
+                : 'bg-slate-100 text-slate-500'
+            }`}>
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                aria-hidden="true"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </span>
           </button>
 
           {openIndex === i && (
-            <div className="px-6 pb-6 border-t border-slate-200/70 pt-4 animate-fade-in">
-              <p className="text-slate-700 leading-relaxed">{f.a}</p>
+            <div className="px-6 pb-6 border-t border-slate-100 pt-4 animate-fade-in">
+              <p className="text-slate-600 leading-relaxed text-sm">{f.a}</p>
             </div>
           )}
         </div>

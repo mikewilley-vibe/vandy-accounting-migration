@@ -31,7 +31,7 @@ const testimonials = [
 
 export default function AboutPage() {
   return (
-    <div className="space-y-20 md:space-y-24">
+    <div className="mx-auto max-w-6xl px-6 py-10 md:py-14 space-y-20 md:space-y-24">
       {/* ABOUT / BIO */}
       <section className="animate-fade-in-up rounded-3xl bg-white p-7 md:p-12 ring-1 ring-slate-900/5 transition-smooth hover:ring-slate-900/10 hover:shadow-md">
         <p className="animate-fade-in text-sm font-semibold text-slate-600">About</p>
