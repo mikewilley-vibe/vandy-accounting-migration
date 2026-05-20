@@ -9,32 +9,40 @@ export default function AwardStrip() {
         {/* LEFT */}
         <div>
           <p className="text-sm font-semibold text-slate-600">
-            Recognition
+            Certifications &amp; Partnerships
           </p>
 
           <h2 className="mt-2 text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">
-            Gold-certified QuickBooks ProAdvisor
+            Certified software partners you can trust
           </h2>
 
           <p className="mt-3 text-slate-600 leading-relaxed max-w-[55ch]">
-            Vandy Accounting Solutions is a proud Gold-certified Intuit QuickBooks ProAdvisor.
-            That means proven QuickBooks expertise, cleaner books, and a smoother monthly close.
+            Vandy Accounting Solutions holds a Gold QuickBooks ProAdvisor certification and is an
+            official ADP Payroll Partner — two of the most recognized credentials in small business
+            accounting and payroll.
           </p>
 
-          <div className="mt-6">
+          <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href="/services/quickbooks-support"
               className="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
             >
-              Explore QuickBooks support
+              QuickBooks support
+            </Link>
+            <Link
+              href="/services/payroll-partnership"
+              className="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
+            >
+              Payroll partnership
             </Link>
           </div>
         </div>
 
-        {/* RIGHT (badge) */}
-        <div className="relative">
-          <div className="mx-auto w-full max-w-[360px] rounded-2xl bg-white p-6 ring-1 ring-slate-200/70 shadow-sm">
-            <div className="relative aspect-square w-full">
+        {/* RIGHT — two partner badges */}
+        <div className="relative flex flex-col gap-4">
+          {/* QuickBooks Gold */}
+          <div className="flex items-center gap-4 rounded-2xl bg-white p-5 ring-1 ring-slate-200/70 shadow-sm">
+            <div className="relative h-16 w-16 shrink-0">
               <Image
                 src="/quickbooks-proadvisor-gold.png"
                 alt="Intuit QuickBooks ProAdvisor Program — Gold"
@@ -42,6 +50,21 @@ export default function AwardStrip() {
                 className="object-contain"
                 priority={false}
               />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-slate-900">QuickBooks Gold ProAdvisor</p>
+              <p className="text-xs text-slate-500 mt-0.5">Intuit certified — advanced bookkeeping &amp; QBO expertise</p>
+            </div>
+          </div>
+
+          {/* ADP Payroll Partner */}
+          <div className="flex items-center gap-4 rounded-2xl bg-white p-5 ring-1 ring-slate-200/70 shadow-sm">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-[#ED1C24] text-white">
+              <span className="text-xl font-extrabold tracking-tight">ADP</span>
+            </div>
+            <div>
+              <p className="text-sm font-bold text-slate-900">ADP Payroll Partner</p>
+              <p className="text-xs text-slate-500 mt-0.5">Certified partner — payroll processing &amp; compliance coordination</p>
             </div>
           </div>
 

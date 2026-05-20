@@ -8,6 +8,7 @@ const credentials = [
   "Bachelor's Degree in Accounting",
   "20+ Years Accounting & Controller Experience",
   "QuickBooks Gold ProAdvisor",
+  "ADP Certified Payroll Partner",
   "Multi-state payroll compliance expertise",
 ];
 
