@@ -9,6 +9,7 @@ import HomeTestimonials from "@/components/HomeTestimonials";
 import HomeFinalCta from "@/components/HomeFinalCta";
 import CollapsibleFaq from "@/components/CollapsibleFaq";
 import FadeIn from "@/components/FadeIn";
+import AwardStrip from "@/components/AwardStrip";
 
 export const metadata: Metadata = {
   title: "Vandy Accounting Solutions | Strategic Accounting for Growing Businesses",
@@ -137,6 +138,13 @@ export default function HomePage() {
       {/* MEET JULIE — white with brand-blue dark card */}
       <div className="bg-white py-16 md:py-20">
         <HomeMeetJulie />
+      </div>
+
+      {/* CERTIFICATIONS — white background */}
+      <div className="bg-white py-16 md:py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <AwardStrip />
+        </div>
       </div>
 
       {/* HOW IT WORKS — subtle gradient bg */}

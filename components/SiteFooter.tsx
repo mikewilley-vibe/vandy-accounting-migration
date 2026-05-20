@@ -95,18 +95,27 @@ export default function SiteFooter() {
             </div>
           </div>
 
-          {/* QB badge column (hidden on mobile/tablet) */}
+          {/* Partner badges column (hidden on mobile/tablet) */}
           <div className="hidden lg:flex lg:flex-col lg:items-start lg:gap-4">
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-300">Certified</h3>
-            <Image
-              src="/quickbooks-proadvisor-gold.png"
-              alt="QuickBooks Gold ProAdvisor"
-              width={120}
-              height={80}
-              className="opacity-80 transition-opacity hover:opacity-100"
-            />
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-300">Certified Partners</h3>
+            <div className="flex flex-col gap-3">
+              <Image
+                src="/QB.png"
+                alt="QuickBooks Gold ProAdvisor"
+                width={120}
+                height={50}
+                className="opacity-80 transition-opacity hover:opacity-100 object-contain"
+              />
+              <Image
+                src="/ADP.png"
+                alt="ADP Payroll Partner"
+                width={120}
+                height={50}
+                className="opacity-80 transition-opacity hover:opacity-100 object-contain"
+              />
+            </div>
             <p className="text-xs text-slate-500 leading-relaxed max-w-[160px]">
-              Gold-certified Intuit QuickBooks ProAdvisor — verified expertise in QuickBooks setup, cleanup, and support.
+              Gold-certified QuickBooks ProAdvisor &amp; official ADP Payroll Partner.
             </p>
           </div>
         </div>

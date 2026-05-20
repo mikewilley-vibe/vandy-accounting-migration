@@ -1,4 +1,5 @@
 import PrimaryButton from "@/components/PrimaryButton";
+import AwardStrip from "@/components/AwardStrip";
 
 const testimonials = [
   {
@@ -100,6 +101,9 @@ export default function AboutPage() {
         {/* clear float so following sections lay out correctly */}
         <div className="clear-both" />
       </section>
+
+      {/* CERTIFICATIONS */}
+      <AwardStrip />
 
       {/* TESTIMONIALS */}
       <section className="mt-20">
