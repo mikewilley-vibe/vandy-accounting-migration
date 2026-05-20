@@ -25,7 +25,7 @@ export default function SiteFooter() {
           {/* Brand column */}
           <div className="space-y-5">
             <Link href="/" className="inline-block">
-              <Image src="/logo.png" alt="Vandy Accounting Solutions" width={160} height={40} className="brightness-0 invert opacity-90" />
+              <span className="text-lg font-bold tracking-tight text-white">Vandy Accounting Solutions</span>
             </Link>
             <p className="text-sm leading-relaxed text-slate-400 max-w-xs">
               Strategic accounting services for small and mid-size businesses. Clarity, confidence, and peace of mind — every month.
