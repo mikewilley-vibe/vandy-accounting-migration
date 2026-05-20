@@ -34,18 +34,21 @@ export default function ClientTrustBadges() {
         </div>
 
         <div className="mt-8 p-6 rounded-2xl bg-white ring-1 ring-slate-200/70">
-          <div className="text-sm font-semibold text-slate-600 mb-3">Gold-certified by Intuit</div>
-          <div className="flex items-center gap-4">
-            <div>
-              <img
-                src="/quickbooks-proadvisor-gold.png"
-                alt="Intuit QuickBooks ProAdvisor Gold"
-                className="h-16 w-auto"
-              />
-            </div>
+          <div className="text-sm font-semibold text-slate-600 mb-4">Certified software partners</div>
+          <div className="flex flex-wrap items-center gap-6">
+            <img
+              src="/QB.png"
+              alt="Intuit QuickBooks ProAdvisor Gold"
+              className="h-16 w-auto object-contain"
+            />
+            <img
+              src="/ADP.png"
+              alt="ADP Payroll Partner"
+              className="h-16 w-auto object-contain"
+            />
             <div className="text-sm text-slate-700">
-              Vandy Accounting Solutions is officially certified as a Gold-level QuickBooks ProAdvisor,
-              demonstrating proven expertise and commitment to professional excellence.
+              Gold-certified QuickBooks ProAdvisor and ADP Payroll Partner — two of the most
+              recognized credentials in small business accounting and payroll.
             </div>
           </div>
         </div>

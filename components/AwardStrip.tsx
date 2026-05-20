@@ -44,7 +44,7 @@ export default function AwardStrip() {
           <div className="flex items-center gap-4 rounded-2xl bg-white p-5 ring-1 ring-slate-200/70 shadow-sm">
             <div className="relative h-16 w-16 shrink-0">
               <Image
-                src="/quickbooks-proadvisor-gold.png"
+                src="/QB.png"
                 alt="Intuit QuickBooks ProAdvisor Program — Gold"
                 fill
                 className="object-contain"
@@ -59,8 +59,14 @@ export default function AwardStrip() {
 
           {/* ADP Payroll Partner */}
           <div className="flex items-center gap-4 rounded-2xl bg-white p-5 ring-1 ring-slate-200/70 shadow-sm">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-[#ED1C24] text-white">
-              <span className="text-xl font-extrabold tracking-tight">ADP</span>
+            <div className="relative h-16 w-16 shrink-0">
+              <Image
+                src="/ADP.png"
+                alt="ADP Payroll Partner"
+                fill
+                className="object-contain"
+                priority={false}
+              />
             </div>
             <div>
               <p className="text-sm font-bold text-slate-900">ADP Payroll Partner</p>
