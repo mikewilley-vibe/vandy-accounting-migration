@@ -100,7 +100,7 @@ export default function SiteFooter() {
             <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-300">Certified Partners</h3>
             <div className="flex flex-col gap-3">
               <Image
-                src="/QB.png"
+                src="/quickbooks-proadvisor-gold.png"
                 alt="QuickBooks Gold ProAdvisor"
                 width={120}
                 height={50}

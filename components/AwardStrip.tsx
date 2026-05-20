@@ -44,7 +44,7 @@ export default function AwardStrip() {
           <div className="flex items-center gap-4 rounded-2xl bg-white p-5 ring-1 ring-slate-200/70 shadow-sm">
             <div className="relative h-16 w-16 shrink-0">
               <Image
-                src="/QB.png"
+                src="/quickbooks-proadvisor-gold.png"
                 alt="Intuit QuickBooks ProAdvisor Program — Gold"
                 fill
                 className="object-contain"

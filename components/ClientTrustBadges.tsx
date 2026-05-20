@@ -37,7 +37,7 @@ export default function ClientTrustBadges() {
           <div className="text-sm font-semibold text-slate-600 mb-4">Certified software partners</div>
           <div className="flex flex-wrap items-center gap-6">
             <img
-              src="/QB.png"
+              src="/quickbooks-proadvisor-gold.png"
               alt="Intuit QuickBooks ProAdvisor Gold"
               className="h-16 w-auto object-contain"
             />
