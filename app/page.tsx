@@ -173,6 +173,42 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* COMMUNITY */}
+      <div className="bg-slate-50 py-16 md:py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <FadeIn>
+            <div className="overflow-hidden rounded-3xl bg-white ring-1 ring-slate-200/70 shadow-sm">
+              <div className="grid md:grid-cols-[1fr_1.2fr] md:items-center">
+                {/* Photo */}
+                <div className="relative min-h-[280px] md:min-h-[360px]">
+                  <img
+                    src="/babs.png"
+                    alt="Babs the Sheltie"
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                </div>
+                {/* Text */}
+                <div className="p-8 md:p-12">
+                  <p className="text-sm font-semibold uppercase tracking-widest text-emerald-600">Giving Back</p>
+                  <h2 className="mt-3 text-2xl md:text-3xl font-bold tracking-tight text-slate-900 leading-snug">
+                    Skoshie&rsquo;s Shelties supports Rosie&rsquo;s Southside Animal Shelter
+                  </h2>
+                  <p className="mt-4 text-slate-600 leading-relaxed">
+                    Vandy Accounting&rsquo;s sister company, Skoshie&rsquo;s Shelties, recently donated 10 large bags
+                    of dog food to Rosie&rsquo;s Southside Animal Shelter to help support the incredible work
+                    they do for animals in need.
+                  </p>
+                  <p className="mt-3 text-slate-600 leading-relaxed">
+                    We believe every dog deserves love, care, and a full belly — and we&rsquo;re proud to
+                    support local shelters making a difference every day.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </div>
+
       {/* FINAL CTA */}
       <div className="bg-slate-50 pt-16 md:pt-20">
         <HomeFinalCta />
