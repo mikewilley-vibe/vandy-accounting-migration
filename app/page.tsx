@@ -184,7 +184,7 @@ export default function HomePage() {
                   <img
                     src="/babs.png"
                     alt="Babs the Sheltie"
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className="absolute inset-0 h-full w-full object-cover [object-position:center_30%]"
                   />
                 </div>
                 {/* Text */}
