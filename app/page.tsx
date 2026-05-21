@@ -178,7 +178,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-6">
           <FadeIn>
             <div className="overflow-hidden rounded-3xl bg-white ring-1 ring-slate-200/70 shadow-sm">
-              <div className="grid md:grid-cols-[1fr_1.2fr] md:items-center">
+              <div className="grid gap-0 md:grid-cols-[1fr_1.2fr] md:items-stretch">
                 {/* Photo */}
                 <div className="relative min-h-[280px] md:min-h-[360px]">
                   <img
