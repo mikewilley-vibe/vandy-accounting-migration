@@ -1,14 +1,21 @@
-import Section from '@/components/Section';
-import SectionHeader from '@/components/SectionHeader';
+import Section from "@/components/Section";
+import SectionHeader from "@/components/SectionHeader";
+
+const stats = [
+  { number: "50+", label: "Businesses served" },
+  { number: "20+", label: "Years of experience" },
+  { number: "100%", label: "Response rate" },
+  { number: "1 day", label: "Typical response time" },
+];
+
+const delayClasses = [
+  "animation-delay-100",
+  "animation-delay-200",
+  "animation-delay-300",
+  "animation-delay-400",
+];
 
 export default function ClientTrustBadges() {
-  const stats = [
-    { number: '50+', label: 'Businesses served' },
-    { number: '20+', label: 'Years of experience' },
-    { number: '100%', label: 'Response rate' },
-    { number: '1 day', label: 'Typical response time' },
-  ];
-
   return (
     <Section className="bg-slate-50">
       <SectionHeader
@@ -23,34 +30,16 @@ export default function ClientTrustBadges() {
           {stats.map((stat, i) => (
             <div
               key={stat.label}
-              className={`animate-fade-in-up animation-delay-${
-                100 + i * 100
-              } rounded-2xl bg-white p-6 ring-1 ring-slate-200/70 text-center transition-smooth hover:shadow-md`}
+              className={`animate-fade-in-up ${delayClasses[i]} rounded-2xl bg-white p-6 text-center ring-1 ring-slate-200/70`}
             >
-              <div className="text-3xl font-bold text-emerald-700">{stat.number}</div>
-              <div className="mt-2 text-sm text-slate-600 font-semibold">{stat.label}</div>
+              <div className="text-3xl font-semibold text-[hsl(var(--brand))]">
+                {stat.number}
+              </div>
+              <div className="mt-2 text-sm font-semibold text-slate-600">
+                {stat.label}
+              </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-8 p-6 rounded-2xl bg-white ring-1 ring-slate-200/70">
-          <div className="text-sm font-semibold text-slate-600 mb-4">Certified software partners</div>
-          <div className="flex flex-wrap items-center gap-6">
-            <img
-              src="/quickbooks-proadvisor-gold.png"
-              alt="Intuit QuickBooks ProAdvisor Gold"
-              className="h-16 w-auto object-contain"
-            />
-            <img
-              src="/ADP.png"
-              alt="ADP Payroll Partner"
-              className="h-16 w-auto object-contain"
-            />
-            <div className="text-sm text-slate-700">
-              Gold-certified QuickBooks ProAdvisor and ADP Payroll Partner — two of the most
-              recognized credentials in small business accounting and payroll.
-            </div>
-          </div>
         </div>
       </div>
     </Section>

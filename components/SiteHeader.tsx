@@ -1,14 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
-
-const nav = [
-  { href: "/services", label: "Services" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-] as const;
+import { company } from "@/data/company";
 
 type ServiceIconKey =
   | "bookkeeping"
@@ -253,17 +249,20 @@ export default function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-3">
-          <img
+          <Image
             src="/logo.png"
-            alt="Vandy Accounting Solutions"
+            alt={company.name}
+            width={40}
+            height={40}
             className="h-10 w-auto"
+            priority
           />
           <div className="leading-tight">
             <div className="text-sm font-semibold text-slate-900">
-              Vandy Accounting Solutions
+              {company.name}
             </div>
-            <div className="text-xs text-slate-500">
-              Strategic Accounting for Growing Businesses
+            <div className="hidden text-xs text-slate-600 sm:block">
+              {company.tagline}
             </div>
           </div>
         </Link>
@@ -351,32 +350,12 @@ export default function SiteHeader() {
                     </Link>
                   ))}
 
-                  <div className="mt-2 px-3 pb-2">
-                    <Link
-                      href="/services"
-                      className="inline-flex items-center gap-1 text-xs font-semibold text-slate-700 hover:text-slate-900 transition-smooth"
-                      role="menuitem"
-                      onClick={() => setServicesOpen(false)}
-                    >
-                      View all services
-                      <svg
-                        className="h-3 w-3"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        aria-hidden="true"
-                      >
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
-                    </Link>
-                  </div>
                 </div>
 
-                <div className="px-4 py-3 border-t border-slate-200/60 flex-shrink-0">
+                <div className="flex-shrink-0 border-t border-slate-200/60 px-4 py-3">
                   <Link
                     href="/services"
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-slate-700 hover:text-slate-900 transition-smooth"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-slate-700 transition-smooth hover:text-slate-900"
                     role="menuitem"
                     onClick={() => setServicesOpen(false)}
                   >
@@ -407,9 +386,9 @@ export default function SiteHeader() {
           {/* CTA (desktop) */}
           <Link
             href="/contact"
-            className="hidden md:inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-blue-700 to-emerald-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:from-blue-600 hover:to-emerald-500 hover:-translate-y-px hover:shadow-md"
+            className="btn-primary focus-ring hidden items-center justify-center rounded-xl bg-[hsl(var(--brand))] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:brightness-110 md:inline-flex"
           >
-            Free Consultation
+            Request a quote
           </Link>
 
           {/* Mobile menu button */}
@@ -463,7 +442,7 @@ export default function SiteHeader() {
               <Link
                 href="/contact"
                 onClick={() => setMobileOpen(false)}
-                className="mt-2 inline-flex items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold text-white shadow-sm bg-gradient-to-r from-blue-700 to-emerald-600 hover:from-blue-600 hover:to-emerald-500 transition-all duration-200"
+                className="btn-primary focus-ring mt-2 inline-flex items-center justify-center rounded-xl bg-[hsl(var(--brand))] px-4 py-3 text-sm font-semibold text-white shadow-sm hover:brightness-110"
               >
                 Request a quote
               </Link>

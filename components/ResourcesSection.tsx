@@ -48,29 +48,29 @@ export default function ResourcesSection() {
             >
               <div className="flex items-start justify-between">
                 <div className="inline-flex items-center gap-2">
-                  <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
+                  <span className="rounded-full bg-[hsla(var(--brand)/0.1)] px-3 py-1 text-xs font-semibold text-[hsl(var(--brand))]">
                     {resource.category}
                   </span>
                 </div>
                 <span className="text-xs text-slate-500">{resource.readTime}</span>
               </div>
 
-              <h3 className="mt-4 text-lg font-semibold text-slate-900 group-hover:text-emerald-700 transition-smooth">
+              <h3 className="mt-4 text-lg font-semibold text-slate-900 transition-smooth group-hover:text-[hsl(var(--brand))]">
                 {resource.title}
               </h3>
-              <p className="mt-2 text-slate-600 leading-relaxed">{resource.excerpt}</p>
+              <p className="mt-2 leading-relaxed text-slate-600">{resource.excerpt}</p>
 
-              <div className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-emerald-700 group-hover:gap-2 transition-all">
+              <div className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[hsl(var(--brand))] transition-all group-hover:gap-2">
                 Read more <span aria-hidden="true">→</span>
               </div>
             </Link>
           ))}
         </div>
 
-        <div className="mt-8 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-50 p-6 ring-1 ring-slate-200/70 text-center">
+        <div className="mt-8 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-50 p-6 text-center ring-1 ring-slate-200/70">
           <p className="text-slate-700">
             More articles coming soon. Want to suggest a topic?{' '}
-            <Link href="/contact" className="font-semibold text-emerald-700 hover:text-emerald-800 link-underline">
+            <Link href="/contact" className="link-underline font-semibold text-[hsl(var(--brand))] hover:brightness-110">
               Get in touch
             </Link>
             .

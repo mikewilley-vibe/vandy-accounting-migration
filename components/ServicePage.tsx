@@ -5,15 +5,12 @@ import PrimaryButton from "@/components/PrimaryButton";
 type ServicePageProps = {
   title: string;
   description: string;
-
   idealFor: string[];
   included: string[];
   outcomes: string[];
-
   ctaHeading: string;
   ctaSubheading: string;
-
-  eyebrow?: string; // defaults to "Services"
+  eyebrow?: string;
 };
 
 export default function ServicePage({
@@ -28,12 +25,11 @@ export default function ServicePage({
 }: ServicePageProps) {
   return (
     <div className="space-y-14">
-      {/* HERO */}
       <Section className="bg-white">
         <div className="px-7 py-8 md:px-10 md:py-10">
           <p className="text-sm font-semibold text-slate-600">{eyebrow}</p>
 
-          <h1 className="mt-2 text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">
+          <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
             {title}
           </h1>
 
@@ -43,7 +39,7 @@ export default function ServicePage({
             <PrimaryButton href="/contact">Request a quote</PrimaryButton>
             <Link
               href="/services"
-              className="text-sm font-semibold underline underline-offset-4 hover:opacity-80"
+              className="focus-ring inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-slate-200/70 transition-smooth hover:bg-slate-50 hover:ring-slate-300"
             >
               View all services
             </Link>
@@ -51,54 +47,40 @@ export default function ServicePage({
         </div>
       </Section>
 
-      {/* WHAT IT IS / IDEAL FOR */}
-      <Section>
-        <div className="grid gap-10 px-7 py-8 md:grid-cols-2 md:px-10 md:py-10">
-          <div className="space-y-4">
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
-              Who this is for
-            </h2>
-            <p className="text-slate-700 leading-relaxed">
-              This service is designed to reduce friction, create consistency,
-              and deliver clear reporting you can trust.
-            </p>
-          </div>
-
-          <div className="rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200/70">
-            <h3 className="text-lg font-semibold text-slate-900">Ideal for</h3>
-            <ul className="mt-4 space-y-2 text-sm text-slate-700">
-              {idealFor.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="mt-1 h-2 w-2 rounded-full bg-slate-300" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </Section>
-
-      {/* WHAT'S INCLUDED */}
       <Section>
         <div className="px-7 py-8 md:px-10 md:py-10">
           <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
-            What’s included
+            Who this is for
           </h2>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {included.map((w) => (
-              <div
-                key={w}
-                className="rounded-2xl bg-white p-5 ring-1 ring-slate-200/70"
-              >
-                <p className="text-slate-800">{w}</p>
-              </div>
+          <ul className="mt-6 space-y-3">
+            {idealFor.map((item) => (
+              <li key={item} className="flex gap-3 text-slate-700">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[hsl(var(--brand))]" />
+                <span>{item}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </Section>
 
-      {/* OUTCOMES */}
+      <Section>
+        <div className="px-7 py-8 md:px-10 md:py-10">
+          <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
+            What&apos;s included
+          </h2>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+            {included.map((item) => (
+              <li
+                key={item}
+                className="rounded-2xl bg-slate-50 p-5 ring-1 ring-slate-200/70"
+              >
+                <div className="font-semibold text-slate-900">{item}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
       <Section>
         <div className="px-7 py-8 md:px-10 md:py-10">
           <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
@@ -120,24 +102,20 @@ export default function ServicePage({
             <PrimaryButton href="/contact">Talk to Julie</PrimaryButton>
             <p className="text-sm text-slate-600">
               We typically respond within{" "}
-              <span className="font-semibold text-slate-900">
-                one business day
-              </span>
-              .
+              <span className="font-semibold text-slate-900">one business day</span>.
             </p>
           </div>
         </div>
       </Section>
 
-      {/* CTA */}
-      <Section className="bg-slate-900">
+      <Section variant="dark">
         <div className="px-7 py-8 md:px-10 md:py-10">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
               <h3 className="text-2xl font-semibold tracking-tight text-white">
                 {ctaHeading}
               </h3>
-              <p className="mt-2 text-lg text-black">{ctaSubheading}</p>
+              <p className="mt-2 text-lg text-slate-200">{ctaSubheading}</p>
             </div>
             <PrimaryButton href="/contact">Contact us</PrimaryButton>
           </div>

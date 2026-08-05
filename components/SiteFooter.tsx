@@ -1,129 +1,70 @@
 import Link from "next/link";
-import Image from "next/image";
+import SocialLinks from "@/components/SocialLinks";
 import { company } from "@/data/company";
 
-const serviceLinks = [
-  { href: "/services/remote-bookkeeping", label: "Remote Bookkeeping" },
-  { href: "/services/quickbooks-support", label: "QuickBooks Support" },
-  { href: "/services/payroll-partnership", label: "Payroll Partnership" },
-  { href: "/services/month-end-year-end", label: "Month-End & Year-End" },
-  { href: "/services/budget-preparation", label: "Budget Preparation" },
-];
-
-const companyLinks = [
-  { href: "/about", label: "About Julie" },
-  { href: "/services", label: "All Services" },
-  { href: "/contact", label: "Contact Us" },
-];
+const footerNav = [
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+] as const;
 
 export default function SiteFooter() {
   return (
-    <footer className="border-t border-slate-200 bg-slate-900 text-slate-400">
-      <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
-        <div className="grid gap-10 md:grid-cols-[1.8fr_1fr_1fr] lg:grid-cols-[2fr_1fr_1fr_1.4fr]">
-
-          {/* Brand column */}
-          <div className="space-y-5">
-            <Link href="/" className="inline-block">
-              <span className="text-lg font-bold tracking-tight text-white">Vandy Accounting Solutions</span>
-            </Link>
-            <p className="text-sm leading-relaxed text-slate-400 max-w-xs">
-              Strategic accounting services for small and mid-size businesses. Clarity, confidence, and peace of mind — every month.
-            </p>
-            <div className="space-y-1.5 text-sm">
-              <a href={`tel:${company.phoneHref}`} className="flex items-center gap-2 text-slate-400 transition-colors hover:text-white">
-                <svg className="h-4 w-4 shrink-0 text-emerald-500" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.24 1.01l-2.21 2.21Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                {company.phone}
-              </a>
-              <a href={`mailto:${company.email}`} className="flex items-center gap-2 text-slate-400 transition-colors hover:text-white">
-                <svg className="h-4 w-4 shrink-0 text-emerald-500" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                {company.email}
-              </a>
-              <p className="flex items-start gap-2 text-slate-500 text-xs leading-relaxed pl-6">
-                {company.addressLine1}<br />{company.addressLine2}
-              </p>
-            </div>
+    <footer className="mt-6 border-t border-slate-200/70 bg-white">
+      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div>
+          <div className="font-display text-lg font-semibold text-slate-900">
+            {company.name}
           </div>
-
-          {/* Services column */}
-          <div>
-            <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-300">Services</h3>
-            <ul className="space-y-2">
-              {serviceLinks.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-sm text-slate-400 transition-colors hover:text-white">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company column */}
-          <div>
-            <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-300">Company</h3>
-            <ul className="space-y-2">
-              {companyLinks.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-sm text-slate-400 transition-colors hover:text-white">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            {/* Social */}
-            <div className="mt-6 flex gap-3">
-              {company.facebookUrl && (
-                <a href={company.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-slate-400 transition-colors hover:border-white/20 hover:text-white">
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                  </svg>
-                </a>
-              )}
-              {company.linkedinUrl && (
-                <a href={company.linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-slate-400 transition-colors hover:border-white/20 hover:text-white">
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
-                    <circle cx="4" cy="4" r="2" />
-                  </svg>
-                </a>
-              )}
-            </div>
-          </div>
-
-          {/* Partner badges column (hidden on mobile/tablet) */}
-          <div className="hidden lg:flex lg:flex-col lg:items-start lg:gap-4">
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-300">Certified Partners</h3>
-            <div className="flex flex-col gap-3">
-              <Image
-                src="/quickbooks-proadvisor-gold.png"
-                alt="QuickBooks Gold ProAdvisor"
-                width={120}
-                height={50}
-                className="opacity-80 transition-opacity hover:opacity-100 object-contain"
-              />
-              <Image
-                src="/ADP.png"
-                alt="ADP Payroll Partner"
-                width={120}
-                height={50}
-                className="opacity-80 transition-opacity hover:opacity-100 object-contain"
-              />
-            </div>
-            <p className="text-xs text-slate-500 leading-relaxed max-w-[160px]">
-              Gold-certified QuickBooks ProAdvisor &amp; official ADP Payroll Partner.
-            </p>
+          <p className="mt-2 max-w-sm text-sm leading-relaxed text-slate-600">
+            {company.tagline}
+          </p>
+          <div className="mt-5">
+            <SocialLinks size="md" />
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-12 border-t border-white/5 pt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-xs text-slate-500">
-          <p>&copy; {new Date().getFullYear()} Vandy Accounting Solutions. All rights reserved.</p>
-          <p>Indianapolis, IN &bull; Remote-friendly nationwide</p>
+        <div>
+          <div className="text-sm font-semibold text-slate-900">Explore</div>
+          <ul className="mt-3 space-y-2">
+            {footerNav.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className="focus-ring text-sm text-slate-600 hover:text-slate-900"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <div className="text-sm font-semibold text-slate-900">Contact</div>
+          <ul className="mt-3 space-y-2 text-sm text-slate-600">
+            <li>
+              <a
+                className="focus-ring hover:text-slate-900"
+                href={`mailto:${company.email}`}
+              >
+                {company.email}
+              </a>
+            </li>
+            <li>
+              <a
+                className="focus-ring hover:text-slate-900"
+                href={`tel:${company.phoneHref}`}
+              >
+                {company.phone}
+              </a>
+            </li>
+            <li>
+              {company.addressLine1}
+              <br />
+              {company.addressLine2}
+            </li>
+          </ul>
         </div>
       </div>
     </footer>

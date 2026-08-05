@@ -1,18 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { CalendarCheck, Loader2 } from 'lucide-react';
+import { Loader2, Send } from 'lucide-react';
 
 type FormState = 'idle' | 'loading' | 'success' | 'error';
 
 const inputBase =
   'mt-1.5 w-full rounded-xl border px-4 py-3.5 text-[15px] text-slate-900 outline-none transition-all duration-200 placeholder:text-slate-400 focus:ring-2 focus:ring-offset-0';
-const inputValid = 'border-slate-200 bg-white focus:border-emerald-400 focus:ring-emerald-100';
+const inputValid =
+  'border-slate-200 bg-white focus:border-[hsl(var(--brand))] focus:ring-[hsla(var(--brand)/0.15)]';
 const inputError = 'border-red-300 bg-red-50/30 focus:border-red-400 focus:ring-red-100';
 
 export default function ContactForm() {
   const [state, setState] = useState<FormState>('idle');
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', service: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validateForm = () => {
@@ -50,20 +51,17 @@ export default function ContactForm() {
       });
       if (response.ok) {
         setState('success');
-        setFormData({ name: '', email: '', phone: '', service: '', message: '' });
-        setTimeout(() => setState('idle'), 6000);
+        setFormData({ name: '', email: '', message: '' });
       } else {
         setState('error');
-        setTimeout(() => setState('idle'), 6000);
       }
     } catch {
       setState('error');
-      setTimeout(() => setState('idle'), 6000);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
       <label className="block">
         <span className="text-sm font-medium text-slate-700">Full Name</span>
         <input
@@ -74,8 +72,13 @@ export default function ContactForm() {
           className={`${inputBase} ${errors.name ? inputError : inputValid}`}
           placeholder="Jane Smith"
           autoComplete="name"
+          aria-invalid={Boolean(errors.name)}
         />
-        {errors.name && <p className="mt-1.5 text-xs font-medium text-red-600">{errors.name}</p>}
+        {errors.name && (
+          <p className="mt-1.5 text-xs font-medium text-red-600" role="alert">
+            {errors.name}
+          </p>
+        )}
       </label>
 
       <label className="block">
@@ -88,42 +91,14 @@ export default function ContactForm() {
           className={`${inputBase} ${errors.email ? inputError : inputValid}`}
           placeholder="you@company.com"
           autoComplete="email"
+          aria-invalid={Boolean(errors.email)}
         />
-        {errors.email && <p className="mt-1.5 text-xs font-medium text-red-600">{errors.email}</p>}
+        {errors.email && (
+          <p className="mt-1.5 text-xs font-medium text-red-600" role="alert">
+            {errors.email}
+          </p>
+        )}
       </label>
-
-      <div className="grid gap-5 sm:grid-cols-2">
-        <label className="block">
-          <span className="text-sm font-medium text-slate-700">Phone Number <span className="text-slate-400 font-normal">(optional)</span></span>
-          <input
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            className={`${inputBase} ${inputValid}`}
-            placeholder="(317) 555-0100"
-            autoComplete="tel"
-          />
-        </label>
-
-        <label className="block">
-          <span className="text-sm font-medium text-slate-700">Service Needed <span className="text-slate-400 font-normal">(optional)</span></span>
-          <select
-            name="service"
-            value={formData.service}
-            onChange={(e) => setFormData((prev) => ({ ...prev, service: e.target.value }))}
-            className={`${inputBase} ${inputValid} cursor-pointer`}
-          >
-            <option value="">Select a service...</option>
-            <option>Remote Bookkeeping</option>
-            <option>QuickBooks Support</option>
-            <option>Payroll Partnership</option>
-            <option>Month-End &amp; Year-End Close</option>
-            <option>Budget Preparation</option>
-            <option>Not sure yet</option>
-          </select>
-        </label>
-      </div>
 
       <label className="block">
         <span className="text-sm font-medium text-slate-700">How can we help?</span>
@@ -134,34 +109,56 @@ export default function ContactForm() {
           rows={5}
           className={`${inputBase} resize-none ${errors.message ? inputError : inputValid}`}
           placeholder="Tell us about your business and what you need help with (bookkeeping, cleanup, budgeting, close, etc.)"
+          aria-invalid={Boolean(errors.message)}
         />
         {errors.message && (
-          <p className="mt-1.5 text-xs font-medium text-red-600">{errors.message}</p>
+          <p className="mt-1.5 text-xs font-medium text-red-600" role="alert">
+            {errors.message}
+          </p>
         )}
       </label>
 
-      {state === 'success' && (
-        <div className="animate-fade-in flex items-start gap-3 rounded-xl bg-emerald-50 p-4 ring-1 ring-emerald-200">
-          <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white text-xs font-bold">✓</div>
-          <p className="text-sm font-medium text-emerald-900">
-            Message sent! We'll be in touch within one business day.
-          </p>
-        </div>
-      )}
+      <div aria-live="polite">
+        {state === 'success' && (
+          <div className="animate-fade-in flex items-start gap-3 rounded-xl bg-[hsla(var(--brand)/0.08)] p-4 ring-1 ring-[hsla(var(--brand)/0.25)]">
+            <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[hsl(var(--brand))] text-xs font-bold text-white">
+              ✓
+            </div>
+            <p className="text-sm font-medium text-slate-900">
+              Thanks — your message was received. We&apos;ll reply within one business day.
+              If you need something sooner, email us directly at{' '}
+              <a
+                className="font-semibold underline underline-offset-2"
+                href="mailto:info@vandyaccounting.com"
+              >
+                info@vandyaccounting.com
+              </a>
+              .
+            </p>
+          </div>
+        )}
 
-      {state === 'error' && (
-        <div className="animate-fade-in rounded-xl bg-red-50 p-4 ring-1 ring-red-200">
-          <p className="text-sm font-medium text-red-900">
-            Something went wrong. Please try again or email us directly.
-          </p>
-        </div>
-      )}
+        {state === 'error' && (
+          <div className="animate-fade-in rounded-xl bg-red-50 p-4 ring-1 ring-red-200">
+            <p className="text-sm font-medium text-red-900">
+              Something went wrong. Please try again or email us directly at{' '}
+              <a
+                className="underline underline-offset-2"
+                href="mailto:info@vandyaccounting.com"
+              >
+                info@vandyaccounting.com
+              </a>
+              .
+            </p>
+          </div>
+        )}
+      </div>
 
-      <div className="pt-1 space-y-3">
+      <div className="space-y-3 pt-1">
         <button
           type="submit"
           disabled={state === 'loading'}
-          className="group w-full inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-blue-700 to-emerald-600 px-6 py-4 text-[15px] font-bold text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-lg hover:from-blue-600 hover:to-emerald-500 active:translate-y-0 active:scale-100 active:shadow-md disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+          className="btn-primary focus-ring inline-flex w-full items-center justify-center gap-2.5 rounded-xl bg-[hsl(var(--brand))] px-6 py-4 text-[15px] font-semibold text-white shadow-sm hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {state === 'loading' ? (
             <>
@@ -170,14 +167,14 @@ export default function ContactForm() {
             </>
           ) : (
             <>
-              <CalendarCheck className="h-4 w-4 transition-transform duration-200 group-hover:scale-110" />
-              Schedule My Consultation
+              <Send className="h-4 w-4" />
+              Send message
             </>
           )}
         </button>
 
         <p className="text-center text-xs text-slate-400">
-          No commitment required &mdash; we'll respond within{' '}
+          No commitment required — we&apos;ll respond within{' '}
           <span className="font-semibold text-slate-500">one business day</span>.
         </p>
       </div>

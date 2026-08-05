@@ -21,9 +21,7 @@ export default function FullBleedSection({
 
   return (
     <section className={`w-full ${variants[variant]} ${className}`}>
-      <div className="mx-auto max-w-6xl px-7 md:px-10">
-        {children}
-      </div>
+      <div className="mx-auto max-w-6xl px-6 md:px-10">{children}</div>
     </section>
   );
 }

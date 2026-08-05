@@ -94,7 +94,7 @@ export default function ServiceComparison() {
                     <td key={`${service.name}-${f.key}`} className="text-center py-4 px-2">
                       {included ? (
                         <svg
-                          className="h-5 w-5 text-emerald-600 mx-auto"
+                          className="mx-auto h-5 w-5 text-[hsl(var(--brand))]"
                           viewBox="0 0 24 24"
                           fill="currentColor"
                           aria-hidden="true"

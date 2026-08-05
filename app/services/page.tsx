@@ -7,6 +7,7 @@ import ServiceCard from "@/components/ServiceCard";
 import CollapsibleFaq from "@/components/CollapsibleFaq";
 import ServiceComparison from "@/components/ServiceComparison";
 import ClientTrustBadges from "@/components/ClientTrustBadges";
+import PageShell from "@/components/PageShell";
 import { services } from "@/data/services";
 
 export const metadata: Metadata = {
@@ -78,7 +79,7 @@ const faqs = [
 
 export default function ServicesPage() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-10 md:py-14 space-y-14">
+    <PageShell>
       {/* HERO (tighter) */}
       <Section className="bg-white">
         <div className="px-7 py-8 md:px-10 md:py-10">
@@ -86,18 +87,18 @@ export default function ServicesPage() {
 
           <div className="mt-2 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
-              <h1 className="animate-fade-in-up animation-delay-100 text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">
+              <h1 className="animate-fade-in-up animation-delay-100 text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
                 Support that makes your accounting feel easier
               </h1>
-              <p className="animate-fade-in-up animation-delay-200 mt-3 text-base md:text-lg text-slate-600">
+              <p className="animate-fade-in-up animation-delay-200 mt-3 text-base text-slate-600 md:text-lg">
                 Clean books, consistent close, and clear reporting—so you can make decisions with confidence.
               </p>
 
               <div className="animate-fade-in-up animation-delay-300 mt-5 flex flex-wrap gap-2">
-                {painPoints.map((p, i) => (
+                {painPoints.map((p) => (
                   <span
                     key={p}
-                    className={`animate-fade-in animation-delay-${300 + i * 50} rounded-full bg-slate-50 px-3 py-1 text-sm text-slate-700 ring-1 ring-slate-200/70 transition-smooth hover:bg-slate-100 hover:ring-slate-300`}
+                    className="rounded-full bg-slate-50 px-3 py-1 text-sm text-slate-700 ring-1 ring-slate-200/70"
                   >
                     {p}
                   </span>
@@ -108,10 +109,10 @@ export default function ServicesPage() {
             <div className="animate-fade-in-up animation-delay-400 flex flex-wrap items-center gap-3">
               <PrimaryButton href="/contact">Request a quote</PrimaryButton>
               <Link
-                href="/contact"
-                className="focus-ring inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold ring-1 ring-slate-200/70 bg-white text-slate-900 shadow-sm transition-smooth hover:bg-slate-50 hover:ring-slate-300"
+                href="/about"
+                className="focus-ring inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-slate-200/70 transition-smooth hover:bg-slate-50 hover:ring-slate-300"
               >
-                Book a call
+                Meet Julie
               </Link>
             </div>
           </div>
@@ -130,10 +131,13 @@ export default function ServicesPage() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
-          {services.map((s, i) => (
-            <div key={s.slug} className={`animate-fade-in-up animation-delay-${300 + (i + 1) * 100}`}>
-              <ServiceCard href={`/services/${s.slug}`} title={s.title} desc={s.short} />
-            </div>
+          {services.map((s) => (
+            <ServiceCard
+              key={s.slug}
+              href={`/services/${s.slug}`}
+              title={s.title}
+              desc={s.short}
+            />
           ))}
         </div>
       </section>
@@ -205,14 +209,14 @@ export default function ServicesPage() {
       <ClientTrustBadges />
 
       {/* FINAL CTA */}
-      <Section className="bg-slate-900">
+      <Section variant="dark">
         <div className="px-7 py-8 md:px-10 md:py-10">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
               <h3 className="animate-fade-in-up text-2xl font-semibold tracking-tight text-white">
                 Ready for cleaner books and clearer decisions?
               </h3>
-              <p className="animate-fade-in-up animation-delay-100 mt-2 text-slate-100 text-lg">
+              <p className="animate-fade-in-up animation-delay-100 mt-2 text-lg text-slate-200">
                 Send a note and we’ll recommend the right next step.
               </p>
             </div>
@@ -222,6 +226,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </Section>
-    </div>
+    </PageShell>
   );
 }
