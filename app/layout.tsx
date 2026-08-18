@@ -4,6 +4,8 @@ import { Fraunces, Source_Sans_3 } from "next/font/google";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import MobileCtaButton from "@/components/MobileCtaButton";
+import JsonLd from "@/components/JsonLd";
+import { company } from "@/data/company";
 
 const sourceSans = Source_Sans_3({
   subsets: ["latin"],
@@ -18,18 +20,59 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Vandy Accounting Solutions | Your Outsourced Accounting Solution",
+  metadataBase: new URL(company.siteUrl),
+  title: {
+    default:
+      "Small-Business Accounting in Virginia & North Carolina | VANDY",
+    template: "%s | VANDY Accounting Solutions",
+  },
   description:
-    "Vandy Accounting Solutions helps companies create an organized and informational approach to accounting and finance.",
-  robots: { index: false, follow: false },
+    "VANDY Accounting Solutions helps small-business owners in Virginia and North Carolina spend less time on the books. Bookkeeping, payroll support, cleanup, and reporting—with a straightforward way to switch.",
+  keywords: [
+    "small-business accounting Virginia",
+    "small-business accounting North Carolina",
+    "bookkeeping services Virginia",
+    "bookkeeping services North Carolina",
+    "restaurant bookkeeping",
+    "contractor bookkeeping",
+    "outsourced accounting for small businesses",
+    "accounting cleanup services",
+    "switch accountants",
+    "payroll and bookkeeping support",
+  ],
+  authors: [{ name: company.name }],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: company.siteUrl,
+    siteName: company.name,
+    title: "You Run the Business. We’ll Handle the Books. | VANDY",
+    description:
+      "Small-business accounting support across Virginia and North Carolina. Bookkeeping, payroll, cleanup, and reporting for owner-operated companies.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "You Run the Business. We’ll Handle the Books. | VANDY",
+    description:
+      "Small-business accounting support across Virginia and North Carolina.",
+  },
+  robots: { index: true, follow: true },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className={`${sourceSans.variable} ${fraunces.variable}`}>
-      <body className="min-h-screen bg-slate-50 font-sans text-slate-900 antialiased">
+      <body className="min-h-screen bg-cream font-sans text-ink antialiased">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+        <JsonLd />
         <SiteHeader />
-        <main className="overflow-x-clip py-0 md:py-0">{children}</main>
+        <main id="main-content">{children}</main>
         <SiteFooter />
         <MobileCtaButton />
       </body>

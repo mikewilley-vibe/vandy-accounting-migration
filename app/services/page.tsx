@@ -1,231 +1,147 @@
-// app/services/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
-import Section from "@/components/Section";
-import PrimaryButton from "@/components/PrimaryButton";
-import ServiceCard from "@/components/ServiceCard";
+import Button from "@/components/Button";
 import CollapsibleFaq from "@/components/CollapsibleFaq";
-import ServiceComparison from "@/components/ServiceComparison";
-import ClientTrustBadges from "@/components/ClientTrustBadges";
-import PageShell from "@/components/PageShell";
+import Container from "@/components/Container";
+import CtaBand from "@/components/CtaBand";
+import { servicesFaqs } from "@/data/faqs";
 import { services } from "@/data/services";
+import { company } from "@/data/company";
 
 export const metadata: Metadata = {
-  title: "Services | Vandy Accounting Solutions",
+  title: "Bookkeeping, Payroll & Cleanup Services",
   description:
-    "Remote bookkeeping, QuickBooks support, payroll partnership, budgeting, and close coordination.",
+    "Outsourced bookkeeping, payroll support, accounting cleanup, QuickBooks help, and financial reporting for small businesses in Virginia and North Carolina.",
 };
-
-const painPoints = [
-  "Books are behind",
-  "QuickBooks is messy",
-  "Unclear cash flow",
-  "Month-end takes forever",
-  "Owner doing everything",
-  "Need cleaner reporting",
-];
 
 const packages = [
   {
     title: "Ongoing bookkeeping",
-    subtitle: "Reliable monthly close + reporting",
+    subtitle: "Keep the books current every month",
     bullets: [
       "Monthly reconciliations",
-      "Categorization + accuracy checks",
+      "Categorization and accuracy checks",
       "Monthly financial statements",
       "Practical recommendations",
     ],
   },
   {
-    title: "Clean-up & catch-up",
-    subtitle: "Get your file back to trustworthy",
+    title: "Catch-up and cleanup",
+    subtitle: "Get an overdue or messy file back to usable",
     bullets: [
-      "Fix common QuickBooks issues",
+      "Review of available records",
       "Bring months up to date",
-      "Resolve uncategorized items",
-      "Create a clean handoff to tax prep",
+      "Resolve common QuickBooks issues",
+      "A cleaner handoff into ongoing work",
     ],
   },
   {
     title: "Planning support",
-    subtitle: "Budgeting + forecasting for clarity",
+    subtitle: "Budgeting and reporting for decisions",
     bullets: [
-      "Budget build + refresh",
+      "Budget build and refresh",
       "Variance review cadence",
       "Simple forecasting updates",
-      "Decision-ready reporting",
+      "Reporting owners can actually use",
     ],
-  },
-];
-
-const faqs = [
-  {
-    q: "What do you need from me to get started?",
-    a: "We’ll start with a quick call, then request access to your bookkeeping system (often QuickBooks) and your bank/credit card statements for the period in scope.",
-  },
-  {
-    q: "Do you work with businesses outside Indiana?",
-    a: "Yes—services are remote-friendly. We’ll confirm your needs and workflows during the first call.",
-  },
-  {
-    q: "Can you work with my tax preparer?",
-    a: "Absolutely. We can provide clean year-end reporting and documentation so taxes go smoother.",
-  },
-  {
-    q: "Is payroll included?",
-    a: "Payroll is offered via an ADP partnership and can be added based on what your business needs.",
   },
 ];
 
 export default function ServicesPage() {
   return (
-    <PageShell>
-      {/* HERO (tighter) */}
-      <Section className="bg-white">
-        <div className="px-7 py-8 md:px-10 md:py-10">
-          <p className="animate-fade-in text-sm font-semibold text-slate-600">Services</p>
-
-          <div className="mt-2 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-2xl">
-              <h1 className="animate-fade-in-up animation-delay-100 text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
-                Support that makes your accounting feel easier
-              </h1>
-              <p className="animate-fade-in-up animation-delay-200 mt-3 text-base text-slate-600 md:text-lg">
-                Clean books, consistent close, and clear reporting—so you can make decisions with confidence.
-              </p>
-
-              <div className="animate-fade-in-up animation-delay-300 mt-5 flex flex-wrap gap-2">
-                {painPoints.map((p) => (
-                  <span
-                    key={p}
-                    className="rounded-full bg-slate-50 px-3 py-1 text-sm text-slate-700 ring-1 ring-slate-200/70"
-                  >
-                    {p}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="animate-fade-in-up animation-delay-400 flex flex-wrap items-center gap-3">
-              <PrimaryButton href="/contact">Request a quote</PrimaryButton>
-              <Link
-                href="/about"
-                className="focus-ring inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-slate-200/70 transition-smooth hover:bg-slate-50 hover:ring-slate-300"
-              >
-                Meet Julie
-              </Link>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* SERVICES GRID */}
-      <section className="space-y-4">
-        <div className="animate-fade-in-up animation-delay-300 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200/70 transition-smooth hover:shadow-md">
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
-            What we offer
-          </h2>
-          <p className="mt-2 text-slate-600 max-w-2xl">
-            Choose what you need now—then scale support as your business grows.
+    <>
+      <section className="bg-navy text-cream">
+        <Container className="py-16 md:py-20">
+          <p className="eyebrow text-accent">Services</p>
+          <h1 className="mt-4 max-w-3xl font-display text-4xl font-semibold tracking-tight md:text-5xl">
+            Accounting support that gives you time back.
+          </h1>
+          <p className="mt-5 max-w-2xl text-lg text-cream/75">
+            Bookkeeping, payroll support, cleanup, reporting, and practical
+            guidance for small-business owners in Virginia and North Carolina.
           </p>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          {services.map((s) => (
-            <ServiceCard
-              key={s.slug}
-              href={`/services/${s.slug}`}
-              title={s.title}
-              desc={s.short}
-            />
-          ))}
-        </div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Button href="/contact">{company.primaryCta}</Button>
+            <Button href="/industries" variant="secondaryOnDark">
+              Find Your Industry
+            </Button>
+          </div>
+        </Container>
       </section>
 
-      {/* PACKAGES (no pricing, but feels premium) */}
-      <Section className="bg-white">
-        <div className="px-7 py-8 md:px-10 md:py-10">
-          <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
-                Common ways clients work with us
-              </h2>
-              <p className="mt-2 text-slate-600 max-w-2xl">
-                We’ll recommend a level of support after a quick call—based on where you are today and where you want to be.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-7 grid gap-4 md:grid-cols-3">
-            {packages.map((p) => (
-              <div
-                key={p.title}
-                className="rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200/70"
+      <section className="bg-cream py-16 md:py-20">
+        <Container>
+          <h2 className="font-display text-3xl font-semibold text-ink">
+            What we help you get done
+          </h2>
+          <p className="mt-3 max-w-2xl text-lg text-ink/70">
+            Choose what you need now, then add support as the business grows.
+            VANDY coordinates with your tax professional; we are not a CPA firm
+            and do not prepare tax returns.
+          </p>
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {services.map((s) => (
+              <Link
+                key={s.slug}
+                href={`/services/${s.slug}`}
+                className="surface-card group p-6 transition hover:-translate-y-0.5"
               >
-                <div className="text-lg font-semibold text-slate-900">
-                  {p.title}
-                </div>
-                <div className="mt-1 text-sm text-slate-600">{p.subtitle}</div>
+                <h3 className="font-display text-2xl font-semibold text-ink">
+                  {s.homepageTitle}
+                </h3>
+                <p className="mt-3 text-ink/70">{s.homepageDesc}</p>
+                <span className="mt-4 inline-block text-sm font-semibold text-forest group-hover:underline">
+                  Learn more →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </Container>
+      </section>
 
-                <ul className="mt-4 space-y-2 text-sm text-slate-700">
+      <section className="bg-paper py-16 md:py-20">
+        <Container>
+          <h2 className="font-display text-3xl font-semibold text-ink">
+            Common ways owners work with us
+          </h2>
+          <p className="mt-3 max-w-2xl text-lg text-ink/70">
+            We’ll recommend a level of support after a conversation—based on
+            where you are today and what you need next.
+          </p>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {packages.map((p) => (
+              <article key={p.title} className="rounded-2xl bg-cream p-6 ring-1 ring-sand">
+                <h3 className="font-display text-xl font-semibold text-ink">
+                  {p.title}
+                </h3>
+                <p className="mt-1 text-sm text-ink/60">{p.subtitle}</p>
+                <ul className="mt-4 space-y-2 text-sm text-ink/80">
                   {p.bullets.map((b) => (
                     <li key={b} className="flex gap-2">
-                      <span className="mt-1 h-2 w-2 rounded-full bg-slate-300" />
-                      <span>{b}</span>
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-forest" />
+                      {b}
                     </li>
                   ))}
                 </ul>
-              </div>
+              </article>
             ))}
           </div>
+        </Container>
+      </section>
 
-          <div className="mt-7 flex flex-wrap items-center gap-3">
-            <PrimaryButton href="/contact">Tell us what you need</PrimaryButton>
-            <p className="text-sm text-slate-600">
-              Typical response within <span className="font-semibold text-slate-900">one business day</span>.
-            </p>
-          </div>
-        </div>
-      </Section>
+      <section className="bg-cream py-16 md:py-20">
+        <Container>
+          <h2 className="font-display text-3xl font-semibold text-ink">FAQs</h2>
+          <CollapsibleFaq faqs={servicesFaqs} />
+        </Container>
+      </section>
 
-      {/* FAQ */}
-      <Section className="bg-white">
-        <div className="px-7 py-8 md:px-10 md:py-10">
-          <h2 className="animate-fade-in-up text-2xl font-semibold tracking-tight text-slate-900">
-            FAQs
-          </h2>
-          <p className="animate-fade-in-up animation-delay-100 mt-2 text-slate-600 max-w-2xl">
-            Quick answers to common questions before you reach out.
-          </p>
-
-          <CollapsibleFaq faqs={faqs} />
-        </div>
-      </Section>
-
-      {/* SERVICE COMPARISON */}
-      <ServiceComparison />
-
-      {/* TRUST BADGES */}
-      <ClientTrustBadges />
-
-      {/* FINAL CTA */}
-      <Section variant="dark">
-        <div className="px-7 py-8 md:px-10 md:py-10">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div>
-              <h3 className="animate-fade-in-up text-2xl font-semibold tracking-tight text-white">
-                Ready for cleaner books and clearer decisions?
-              </h3>
-              <p className="animate-fade-in-up animation-delay-100 mt-2 text-lg text-slate-200">
-                Send a note and we’ll recommend the right next step.
-              </p>
-            </div>
-            <div className="animate-fade-in-up animation-delay-200">
-              <PrimaryButton href="/contact">Contact us</PrimaryButton>
-            </div>
-          </div>
-        </div>
-      </Section>
-    </PageShell>
+      <CtaBand
+        title="Not sure which service you need?"
+        body="Tell us what is working, what is not, and what you want off your plate. We’ll recommend a practical next step."
+        secondaryHref="/switch"
+        secondaryLabel="See How Easy It Is to Switch"
+      />
+    </>
   );
 }

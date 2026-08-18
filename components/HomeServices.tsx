@@ -1,68 +1,46 @@
-// components/HomeServices.tsx
 import Link from "next/link";
-import Section from "@/components/Section";
-import SectionHeader from "@/components/SectionHeader";
-import BackgroundArt from "@/components/BackgroundArt";
+import Container from "@/components/Container";
+import SectionHeading from "@/components/SectionHeading";
+import { services } from "@/data/services";
 
-type Service = { title: string; desc: string; href: string };
-
-export default function HomeServices({ services }: { services: Service[] }) {
+export default function HomeServices() {
   return (
-    <Section variant="darkGrid" className="relative">
-      <BackgroundArt
-        src="/invoice-outline.png"
-        position="bottomRight"
-        opacityClass="opacity-[0.07] md:opacity-[0.10]"
-      />
-
-      <SectionHeader
-        tone="dark"
-        eyebrow="Services"
-        title="What we offer"
-        subtitle="A flexible set of services that gives you clarity, control, and confidence."
-        className="animate-fade-in-up"
-      />
-
-      <div className="px-7 pb-10 md:px-10 md:pb-12">
-        <div className="grid gap-4 md:grid-cols-2">
-          {services.map((s, index) => (
+    <section className="bg-navy py-20 text-cream md:py-24">
+      <Container>
+        <SectionHeading
+          tone="dark"
+          eyebrow="Services"
+          title="Support that shows up as more time, clearer numbers, and less stress."
+          subtitle="Each service is built around a business outcome—not a technical checklist."
+        />
+        <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {services.map((service) => (
             <Link
-              key={s.title}
-              href={s.href}
-              className={`group animate-fade-in-up rounded-2xl bg-gradient-to-br from-white/8 to-white/3 border border-white/15 p-6 transition-smooth hover:-translate-y-1 hover:border-white/25 hover:from-white/12 hover:to-white/6 hover:shadow-xl ${
-                index === 0
-                  ? "animation-delay-100"
-                  : index === 1
-                    ? "animation-delay-200"
-                    : index === 2
-                      ? "animation-delay-300"
-                      : index === 3
-                        ? "animation-delay-400"
-                        : "animation-delay-500"
-              }`}
+              key={service.slug}
+              href={`/services/${service.slug}`}
+              className="group rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:-translate-y-0.5 hover:border-accent/40 hover:bg-white/8"
             >
-              <div className="text-lg font-semibold text-white transition-smooth group-hover:text-blue-100">
-                {s.title}
-              </div>
-              <p className="mt-2 text-white/75 leading-relaxed transition-smooth group-hover:text-white/85">
-                {s.desc}
+              <h3 className="font-display text-2xl font-semibold text-cream">
+                {service.homepageTitle}
+              </h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-cream/70">
+                {service.homepageDesc}
               </p>
-              <div className="mt-4 text-sm font-semibold text-white/80 group-hover:text-white transition-smooth group-hover:underline group-hover:underline-offset-4">
+              <span className="mt-5 inline-flex text-sm font-semibold text-accent group-hover:underline">
                 Learn more →
-              </div>
+              </span>
             </Link>
           ))}
         </div>
-
-        <div className="pt-6 animate-fade-in-up animation-delay-600">
+        <div className="mt-10">
           <Link
             href="/services"
-            className="text-sm font-semibold text-white/80 underline underline-offset-4 transition-smooth hover:text-white"
+            className="text-sm font-semibold text-cream/80 underline decoration-white/30 underline-offset-4 hover:text-cream"
           >
-            See the full services page →
+            Explore our services
           </Link>
         </div>
-      </div>
-    </Section>
+      </Container>
+    </section>
   );
 }

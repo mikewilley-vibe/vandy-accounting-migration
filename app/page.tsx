@@ -1,60 +1,43 @@
+import type { Metadata } from "next";
 import HomeHero from "@/components/HomeHero";
+import TrustStrip from "@/components/TrustStrip";
+import HomeBenefits from "@/components/HomeBenefits";
 import HomeServices from "@/components/HomeServices";
-import HomeHowItWorks from "@/components/HomeHowItWorks";
-import HomeFinalCta from "@/components/HomeFinalCta";
-import FullBleedSection from "@/components/FullBleedSection";
-import AwardStrip from "@/components/AwardStrip";
-import ClientTrustBadges from "@/components/ClientTrustBadges";
+import HomeIndustries from "@/components/HomeIndustries";
+import HomePain from "@/components/HomePain";
+import HomeSwitch from "@/components/HomeSwitch";
+import HomeWhy from "@/components/HomeWhy";
+import HomeServiceArea from "@/components/HomeServiceArea";
 import HomeTestimonials from "@/components/HomeTestimonials";
-import PageShell from "@/components/PageShell";
+import HomeFaq from "@/components/HomeFaq";
+import HomeFinalCta from "@/components/HomeFinalCta";
 
-const services = [
-  {
-    title: "Remote bookkeeping",
-    desc: "Monthly bookkeeping and reconciliations that keep your records clean and reliable.",
-    href: "/services/remote-bookkeeping",
+export const metadata: Metadata = {
+  title: "Small-Business Accounting in Virginia & North Carolina | VANDY",
+  description:
+    "You run the business. VANDY handles the books. Bookkeeping, payroll support, cleanup, and reporting for small-business owners in Virginia and North Carolina.",
+  openGraph: {
+    title: "You Run the Business. We’ll Handle the Books. | VANDY",
+    description:
+      "Small-business accounting support across Virginia and North Carolina. Now accepting new clients.",
   },
-  {
-    title: "QuickBooks support",
-    desc: "Cleanup and practical support so your QuickBooks stays accurate and usable.",
-    href: "/services/quickbooks-support",
-  },
-  {
-    title: "Payroll partnership",
-    desc: "An ADP payroll partnership to simplify processing and coordination.",
-    href: "/services/payroll-partnership",
-  },
-  {
-    title: "Month-end & year-end coordination",
-    desc: "Closing support and year-end coordination for peace of mind.",
-    href: "/services/month-end-year-end",
-  },
-  {
-    title: "Budget preparation",
-    desc: "Practical budgeting support so you can plan with clarity and confidence.",
-    href: "/services/budget-preparation",
-  },
-];
+};
 
 export default function HomePage() {
   return (
-    <div>
+    <>
       <HomeHero />
-
-      <PageShell>
-        <HomeServices services={services} />
-      </PageShell>
-
-      <FullBleedSection variant="light" className="border-y border-slate-200 py-16">
-        <AwardStrip />
-      </FullBleedSection>
-
-      <PageShell>
-        <HomeHowItWorks />
-        <HomeTestimonials />
-        <HomeFinalCta />
-        <ClientTrustBadges />
-      </PageShell>
-    </div>
+      <TrustStrip />
+      <HomeBenefits />
+      <HomeServices />
+      <HomeIndustries />
+      <HomePain />
+      <HomeSwitch />
+      <HomeWhy />
+      <HomeServiceArea />
+      <HomeTestimonials />
+      <HomeFaq />
+      <HomeFinalCta />
+    </>
   );
 }

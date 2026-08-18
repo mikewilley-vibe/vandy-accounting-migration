@@ -3,168 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { company } from "@/data/company";
+import { industries } from "@/data/industries";
+import { services } from "@/data/services";
 
-type ServiceIconKey =
-  | "bookkeeping"
-  | "quickbooks"
-  | "payroll"
-  | "close"
-  | "budget";
-
-type ServiceMenuItem = {
-  href: string;
-  label: string;
-  icon: ServiceIconKey;
-  description?: string;
-};
-
-const servicesMenu: ServiceMenuItem[] = [
-  {
-    href: "/services/remote-bookkeeping",
-    label: "Remote bookkeeping",
-    icon: "bookkeeping",
-    description: "Monthly bookkeeping + reconciliations",
-  },
-  {
-    href: "/services/quickbooks-support",
-    label: "QuickBooks support",
-    icon: "quickbooks",
-    description: "Cleanup + practical QuickBooks help",
-  },
-  {
-    href: "/services/payroll-partnership",
-    label: "Payroll partnership",
-    icon: "payroll",
-    description: "ADP partnership + coordination",
-  },
-  {
-    href: "/services/month-end-year-end",
-    label: "Month-end & year-end",
-    icon: "close",
-    description: "Close support + year-end coordination",
-  },
-  {
-    href: "/services/budget-preparation",
-    label: "Budget preparation",
-    icon: "budget",
-    description: "Plan with clarity + confidence",
-  },
-];
-
-function Icon({ name }: { name: ServiceIconKey }) {
-  const cls = "h-4 w-4 text-slate-600";
-  switch (name) {
-    case "bookkeeping":
-      return (
-        <svg className={cls} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path
-            d="M7 4h10a2 2 0 0 1 2 2v13a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M8 8h8M8 12h8M8 16h5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    case "quickbooks":
-      return (
-        <svg className={cls} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <circle
-            cx="12"
-            cy="12"
-            r="8"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M9.5 12h5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M12 9.5v5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    case "payroll":
-      return (
-        <svg className={cls} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path
-            d="M7 7h10v14H7V7Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M9 3h6v4H9V3Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M9.5 11h5M9.5 15h5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    case "close":
-      return (
-        <svg className={cls} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path
-            d="M7 4h10a2 2 0 0 1 2 2v14H5V6a2 2 0 0 1 2-2Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M8 9h8M8 13h8M8 17h6"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M16.5 3.5 19 6"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-    case "budget":
-      return (
-        <svg className={cls} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path
-            d="M4 6h16v12H4V6Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M8 10h8M8 14h5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M6.5 8.5h.01M17.5 15.5h.01"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      );
-  }
+function isActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-function NavLink({
+function NavItem({
   href,
   label,
   onClick,
@@ -174,15 +23,15 @@ function NavLink({
   onClick?: () => void;
 }) {
   const pathname = usePathname();
-  const active = pathname === href;
+  const active = isActive(pathname, href);
 
   return (
     <Link
       href={href}
       onClick={onClick}
       className={[
-        "text-sm font-semibold transition",
-        active ? "text-slate-900" : "text-slate-700 hover:text-slate-900",
+        "rounded-md px-1 py-1 text-sm font-semibold transition",
+        active ? "text-forest" : "text-ink/80 hover:text-ink",
       ].join(" ")}
     >
       {label}
@@ -190,264 +39,248 @@ function NavLink({
   );
 }
 
-export default function SiteHeader() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const servicesWrapRef = useRef<HTMLDivElement | null>(null);
-  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+function Dropdown({
+  label,
+  href,
+  items,
+  footerHref,
+  footerLabel,
+}: {
+  label: string;
+  href: string;
+  items: { href: string; label: string; description?: string }[];
+  footerHref: string;
+  footerLabel: string;
+}) {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const active = isActive(pathname, href);
 
-  // Close menus on Escape
   useEffect(() => {
-    function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") {
-        setMobileOpen(false);
-        setServicesOpen(false);
+    function onDoc(e: MouseEvent) {
+      if (wrapRef.current && e.target instanceof Node && !wrapRef.current.contains(e.target)) {
+        setOpen(false);
       }
     }
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
-
-  // Close Services dropdown when clicking outside
-  useEffect(() => {
-    function onDocMouseDown(e: MouseEvent) {
-      const el = servicesWrapRef.current;
-      if (!el) return;
-      if (e.target instanceof Node && !el.contains(e.target)) {
-        setServicesOpen(false);
-      }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
     }
-    document.addEventListener("mousedown", onDocMouseDown);
-    return () => document.removeEventListener("mousedown", onDocMouseDown);
-  }, []);
-
-  // Cleanup timeout on unmount
-  useEffect(() => {
+    document.addEventListener("mousedown", onDoc);
+    window.addEventListener("keydown", onKey);
     return () => {
-      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+      document.removeEventListener("mousedown", onDoc);
+      window.removeEventListener("keydown", onKey);
     };
   }, []);
 
-  const handleServicesMouseLeave = () => {
-    closeTimeoutRef.current = setTimeout(() => {
-      setServicesOpen(false);
-    }, 300);
+  const cancelClose = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
   };
-
-  const handleServicesMouseEnter = () => {
-    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
-  };
-
-  const pathname = usePathname();
-  const activeServiceLabel = useMemo(() => {
-    const match = servicesMenu.find((s) => pathname?.startsWith(s.href));
-    return match?.label ?? null;
-  }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        {/* Brand */}
-        <Link href="/" className="flex items-center gap-3">
+    <div
+      ref={wrapRef}
+      className="relative"
+      onMouseEnter={() => {
+        cancelClose();
+        setOpen(true);
+      }}
+      onMouseLeave={() => {
+        timeoutRef.current = setTimeout(() => setOpen(false), 180);
+      }}
+    >
+      <button
+        type="button"
+        className={[
+          "inline-flex items-center gap-1 rounded-md px-1 py-1 text-sm font-semibold transition",
+          active ? "text-forest" : "text-ink/80 hover:text-ink",
+        ].join(" ")}
+        aria-expanded={open}
+        aria-haspopup="menu"
+        onClick={() => setOpen((v) => !v)}
+      >
+        {label}
+        <svg
+          className={`h-4 w-4 transition ${open ? "rotate-180" : ""}`}
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M6 9l6 6 6-6"
+            stroke="currentColor"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+      {open ? (
+        <div
+          role="menu"
+          className="absolute left-0 top-full z-50 mt-3 w-[22rem] overflow-hidden rounded-2xl border border-sand bg-paper shadow-xl"
+        >
+          <ul className="max-h-[min(70vh,28rem)] overflow-y-auto p-2">
+            {items.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  role="menuitem"
+                  className="block rounded-xl px-3 py-2.5 transition hover:bg-cream"
+                  onClick={() => setOpen(false)}
+                >
+                  <div className="text-sm font-semibold text-ink">{item.label}</div>
+                  {item.description ? (
+                    <div className="mt-0.5 text-xs leading-snug text-ink/60">
+                      {item.description}
+                    </div>
+                  ) : null}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="border-t border-sand px-4 py-3">
+            <Link
+              href={footerHref}
+              className="text-xs font-semibold text-forest hover:underline"
+              onClick={() => setOpen(false)}
+            >
+              {footerLabel} →
+            </Link>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+export default function SiteHeader() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const closeMobile = () => setMobileOpen(false);
+
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setMobileOpen(false);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-sand/80 bg-cream/90 backdrop-blur-md">
+      <div className="container-site flex h-[4.25rem] items-center justify-between gap-4">
+        <Link href="/" className="flex min-w-0 items-center gap-3">
           <Image
             src="/logo.png"
-            alt={company.name}
-            width={40}
-            height={40}
-            className="h-10 w-auto"
+            alt=""
+            width={44}
+            height={44}
+            className="h-11 w-11 shrink-0 object-contain"
             priority
           />
-          <div className="leading-tight">
-            <div className="text-sm font-semibold text-slate-900">
-              {company.name}
-            </div>
-            <div className="hidden text-xs text-slate-600 sm:block">
-              {company.tagline}
-            </div>
-          </div>
+          <span className="min-w-0 leading-tight">
+            <span className="block font-display text-base font-semibold tracking-tight text-ink">
+              {company.shortName}
+            </span>
+            <span className="hidden text-[11px] font-medium uppercase tracking-[0.14em] text-ink/55 sm:block">
+              Accounting Solutions
+            </span>
+          </span>
+          <span className="sr-only">{company.name} home</span>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-7">
-          {/* Services dropdown */}
-          <div
-            ref={servicesWrapRef}
-            className="relative"
-            onMouseEnter={handleServicesMouseEnter}
-            onMouseLeave={handleServicesMouseLeave}
-          >
-            <button
-              type="button"
-              className={[
-                "inline-flex items-center gap-2 text-sm font-semibold transition",
-                pathname?.startsWith("/services")
-                  ? "text-slate-900"
-                  : "text-slate-700 hover:text-slate-900",
-              ].join(" ")}
-              aria-haspopup="menu"
-              aria-expanded={servicesOpen}
-              onClick={() => setServicesOpen((v) => !v)}
-            >
-              <span>Services</span>
-              <svg
-                className={[
-                  "h-4 w-4 transition",
-                  servicesOpen ? "rotate-180" : "",
-                ].join(" ")}
-                viewBox="0 0 24 24"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M6 9l6 6 6-6"
-                  stroke="currentColor"
-                  strokeWidth="1.75"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-
-            {servicesOpen ? (
-              <div
-                className="absolute left-0 top-full mt-3 w-[340px] rounded-2xl bg-white shadow-lg ring-1 ring-slate-200/70 overflow-hidden flex flex-col max-h-[calc(100vh-120px)]"
-                role="menu"
-                onMouseEnter={handleServicesMouseEnter}
-                onMouseLeave={handleServicesMouseLeave}
-              >
-                <div className="px-4 pt-4 pb-3 border-b border-slate-200/60 flex-shrink-0">
-                  <div className="text-xs font-semibold text-slate-500">
-                    Services
-                  </div>
-                  <div className="mt-1 text-sm font-semibold text-slate-900">
-                    {activeServiceLabel ?? "Explore what we offer"}
-                  </div>
-                </div>
-
-                <div className="p-2 overflow-y-auto flex-1">
-                  {servicesMenu.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="group flex items-start gap-3 rounded-xl px-3 py-2 transition-smooth hover:bg-slate-50"
-                      role="menuitem"
-                      onClick={() => setServicesOpen(false)}
-                    >
-                      <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-xl bg-slate-50 ring-1 ring-slate-200/60 group-hover:bg-white">
-                        <Icon name={item.icon} />
-                      </div>
-
-                      <div className="min-w-0">
-                        <div className="text-sm font-semibold text-slate-900">
-                          {item.label}
-                        </div>
-                        {item.description ? (
-                          <div className="text-xs text-slate-600">
-                            {item.description}
-                          </div>
-                        ) : null}
-                      </div>
-                    </Link>
-                  ))}
-
-                </div>
-
-                <div className="flex-shrink-0 border-t border-slate-200/60 px-4 py-3">
-                  <Link
-                    href="/services"
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-slate-700 transition-smooth hover:text-slate-900"
-                    role="menuitem"
-                    onClick={() => setServicesOpen(false)}
-                  >
-                    View all services
-                    <svg
-                      className="h-3 w-3"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      aria-hidden="true"
-                    >
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </Link>
-                </div>
-              </div>
-            ) : null}
-          </div>
-
-          {/* Normal links */}
-          <NavLink href="/about" label="About" />
-          <NavLink href="/contact" label="Contact" />
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
+          <Dropdown
+            label="Services"
+            href="/services"
+            footerHref="/services"
+            footerLabel="Explore all services"
+            items={services.map((s) => ({
+              href: `/services/${s.slug}`,
+              label: s.homepageTitle,
+              description: s.homepageDesc,
+            }))}
+          />
+          <Dropdown
+            label="Industries"
+            href="/industries"
+            footerHref="/industries"
+            footerLabel="Find your industry"
+            items={industries.map((i) => ({
+              href: `/industries/${i.slug}`,
+              label: i.navLabel,
+              description: i.short,
+            }))}
+          />
+          <NavItem href="/switch" label="Switch to VANDY" />
+          <NavItem href="/about" label="About" />
+          <NavItem href="/contact" label="Contact" />
         </nav>
 
-        {/* Right side */}
-        <div className="flex items-center gap-3">
-          {/* CTA (desktop) */}
+        <div className="flex items-center gap-2">
           <Link
             href="/contact"
-            className="btn-primary focus-ring hidden items-center justify-center rounded-xl bg-[hsl(var(--brand))] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:brightness-110 md:inline-flex"
+            className="btn-primary hidden px-4 py-2.5 text-sm lg:inline-flex"
           >
-            Request a quote
+            {company.primaryCta}
           </Link>
-
-          {/* Mobile menu button */}
           <button
             type="button"
-            className="md:hidden inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50"
+            className="inline-flex items-center rounded-full border border-sand bg-paper px-3.5 py-2 text-sm font-semibold text-ink lg:hidden"
             onClick={() => setMobileOpen((v) => !v)}
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
-            aria-label="Toggle menu"
           >
             {mobileOpen ? "Close" : "Menu"}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu panel */}
       {mobileOpen ? (
-        <div id="mobile-nav" className="md:hidden border-t border-slate-200 bg-white">
-          <div className="mx-auto max-w-6xl px-6 py-4">
-            <div className="flex flex-col gap-4">
-              <Link
-                href="/services"
-                onClick={() => setMobileOpen(false)}
-                className="text-sm font-semibold text-slate-900"
-              >
-                Services
-              </Link>
-
-              <div className="ml-2 grid gap-2">
-                {servicesMenu.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-3 rounded-xl px-3 py-2 hover:bg-slate-50"
-                  >
-                    <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-slate-50 ring-1 ring-slate-200/60">
-                      <Icon name={item.icon} />
-                    </span>
-                    <span className="text-sm font-semibold text-slate-800">
-                      {item.label}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-
-              <NavLink href="/about" label="About" onClick={() => setMobileOpen(false)} />
-              <NavLink href="/contact" label="Contact" onClick={() => setMobileOpen(false)} />
-
-              <Link
-                href="/contact"
-                onClick={() => setMobileOpen(false)}
-                className="btn-primary focus-ring mt-2 inline-flex items-center justify-center rounded-xl bg-[hsl(var(--brand))] px-4 py-3 text-sm font-semibold text-white shadow-sm hover:brightness-110"
-              >
-                Request a quote
-              </Link>
+        <div
+          id="mobile-nav"
+          className="border-t border-sand bg-paper lg:hidden"
+        >
+          <nav className="container-site flex flex-col gap-4 py-5" aria-label="Mobile">
+            <Link href="/services" className="text-sm font-semibold text-ink" onClick={closeMobile}>
+              Services
+            </Link>
+            <div className="grid gap-1 pl-2">
+              {services.map((s) => (
+                <Link
+                  key={s.slug}
+                  href={`/services/${s.slug}`}
+                  className="rounded-lg px-2 py-1.5 text-sm text-ink/80"
+                  onClick={closeMobile}
+                >
+                  {s.homepageTitle}
+                </Link>
+              ))}
             </div>
-          </div>
+            <Link href="/industries" className="text-sm font-semibold text-ink" onClick={closeMobile}>
+              Industries
+            </Link>
+            <div className="grid gap-1 pl-2">
+              {industries.map((i) => (
+                <Link
+                  key={i.slug}
+                  href={`/industries/${i.slug}`}
+                  className="rounded-lg px-2 py-1.5 text-sm text-ink/80"
+                  onClick={closeMobile}
+                >
+                  {i.navLabel}
+                </Link>
+              ))}
+            </div>
+            <NavItem href="/switch" label="Switch to VANDY" onClick={closeMobile} />
+            <NavItem href="/about" label="About" onClick={closeMobile} />
+            <NavItem href="/contact" label="Contact" onClick={closeMobile} />
+            <Link href="/contact" className="btn-primary mt-2 w-full" onClick={closeMobile}>
+              {company.primaryCta}
+            </Link>
+          </nav>
         </div>
       ) : null}
     </header>

@@ -1,29 +1,29 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import PrimaryButton from '@/components/PrimaryButton';
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import Button from "@/components/Button";
+import { company } from "@/data/company";
 
 export default function MobileCtaButton() {
   const [isVisible, setIsVisible] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show button after scrolling past first section (hero)
-      const heroHeight = window.innerHeight * 1.5;
-      setIsVisible(window.scrollY > heroHeight);
+      setIsVisible(window.scrollY > window.innerHeight * 0.7);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (!isVisible) return null;
+  if (!isVisible || pathname === "/contact") return null;
 
   return (
-    <div className="fixed bottom-6 left-6 right-6 md:hidden z-40 animate-fade-in">
-      <PrimaryButton href="/contact" className="w-full text-center">
-        Get started
-      </PrimaryButton>
+    <div className="fixed inset-x-4 bottom-4 z-40 md:hidden">
+      <Button href="/contact" className="w-full shadow-lg">
+        {company.primaryCta}
+      </Button>
     </div>
   );
 }
