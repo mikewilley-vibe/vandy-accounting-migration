@@ -8,6 +8,7 @@ const service = services.find((s) => s.slug === "budget-preparation")!;
 
 export const metadata: Metadata = {
   title: "Budget Preparation | Vandy Accounting Solutions",
+  alternates: { canonical: `/services/${service.slug}` },
   description: service.short,
 };
 

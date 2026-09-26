@@ -8,6 +8,7 @@ const service = services.find((s) => s.slug === "month-end-year-end")!;
 
 export const metadata: Metadata = {
   title: "Month-End & Year-End Coordination | Vandy Accounting Solutions",
+  alternates: { canonical: `/services/${service.slug}` },
   description: service.short,
 };
 
