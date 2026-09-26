@@ -7,6 +7,7 @@ import { company } from "@/data/company";
 
 export const metadata: Metadata = {
   title: "Contact | Vandy Accounting Solutions",
+  alternates: { canonical: "/contact" },
   description:
     "Contact Vandy Accounting Solutions to request a quote or ask a question.",
 };

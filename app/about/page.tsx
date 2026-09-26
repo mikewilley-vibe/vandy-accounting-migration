@@ -7,6 +7,7 @@ import TestimonialCard from "@/components/TestimonialCard";
 
 export const metadata: Metadata = {
   title: "About | Vandy Accounting Solutions",
+  alternates: { canonical: "/about" },
   description:
     "Meet Julie L. Riess, owner of Vandy Accounting Solutions—an experienced accountant focused on clear books, practical process, and long-term client partnerships.",
 };

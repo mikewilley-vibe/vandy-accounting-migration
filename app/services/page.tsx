@@ -12,6 +12,7 @@ import { services } from "@/data/services";
 
 export const metadata: Metadata = {
   title: "Services | Vandy Accounting Solutions",
+  alternates: { canonical: "/services" },
   description:
     "Remote bookkeeping, QuickBooks support, payroll partnership, budgeting, and close coordination.",
 };
